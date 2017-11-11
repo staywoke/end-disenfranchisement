@@ -1,3 +1,10 @@
+<?php
+if (!file_exists('config.php')) {
+  exit('Missing config.php');
+}
+
+require 'config.php';
+?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
@@ -12,7 +19,7 @@
     <!-- The styles -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/css/styles.css?v1.0.0" />
+    <link rel="stylesheet" href="assets/css/styles.css?v1.0.2" />
 
     <meta property="og:url" content="https://makedemocracymatter.org" />
     <meta property="og:title" content="End Disenfranchisement" />
@@ -27,6 +34,70 @@
   </head>
 
   <body>
+
+    <div class="modal-window" id="donate-modal">
+      <div class="modal-wrapper">
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+          <input type="hidden" name="cmd" value="_donations">
+          <input type="hidden" name="business" value="<? PAYPAL_BUSINESS_ID ?>">
+          <input type="hidden" name="return" value="<?= PAYPAL_BUSINESS_SUCCESS_URL ?>">
+          <input type="hidden" name="cancel_return" value="<?= PAYPAL_BUSINESS_CANCEL_URL ?>">
+          <input type="hidden" name="notify_url" value="<?= PAYPAL_BUSINESS_NOTIFY_URL ?>">
+          <input type="hidden" name="lc" value="US">
+          <input type="hidden" name="item_name" value="StayWoke">
+          <input type="hidden" name="item_number" value="FL">
+          <input type="hidden" name="no_note" value="1">
+          <input type="hidden" name="no_shipping" value="1">
+          <input type="hidden" name="rm" value="1">
+          <input type="hidden" name="currency_code" value="USD">
+          <input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHosted">
+          <input type="hidden" name="address_override" value="1">
+
+          <div class="container-fluid selection-group">
+            <div class="row">
+              <h3 class="modal-title">Select Donation Amount</h3>
+            </div>
+            <div class="row">
+              <div class="col-sm-3">
+                <button type="button" class="btn btn-block donation-choice" data-price="5">$5</button>
+              </div>
+              <div class="col-sm-3">
+                <button type="button" class="btn btn-block donation-choice" data-price="10">$10</button>
+              </div>
+              <div class="col-sm-3">
+                <button type="button" class="btn btn-block donation-choice" data-price="20">$20</button>
+              </div>
+              <div class="col-sm-3">
+                <button type="button" class="btn btn-block donation-choice" data-price="50">$50</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3">
+                <button type="button" class="btn btn-block donation-choice" data-price="100">$100</button>
+              </div>
+              <div class="col-sm-3">
+                <button type="button" class="btn btn-block donation-choice" data-price="500">$500</button>
+              </div>
+              <div class="col-sm-6">
+                <div class="input-group mb-2 mb-sm-0">
+                  <div class="input-group-addon">$</div>
+                  <input type="number" min="5" step="5" onkeypress="return event.charCode >= 48" class="form-control" id="amount" name="amount" placeholder="Enter USD Amount" required="required" autocomplete="false">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-9" id="donation-text">
+                Donate <b>$<?= number_format(COST_PER_MAILER, 2) ?></b> and we'll mail <b>1</b> petition to Florida Registered Voters.
+              </div>
+              <div class="col-sm-3">
+                <button type="submit" class="btn btn-block make-donation">Donate</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-overlay"></div>
+    </div>
 
     <!--  HEADER -->
 
@@ -78,7 +149,7 @@
       <div class="map-container">
         <h1>We can give 1.6 million people in Florida the right to vote.</h1>
         <h3>&nbsp;</h3>
-        <a href="#sign-up" class="btn btn-dark btn-block help-button">You Can Help</a>
+        <a href="#sign-up" class="btn btn-dark btn-block help-button">Take Action</a>
         <div id="container"></div>
       </div>
     </section>
@@ -95,9 +166,9 @@
 
           <div class="col-md-8 col-sm-12 text-left signup-text">
             <h2>We Need Your Help</h2>
-            <p>We can make it possible for 1.6 million more Floridians - including 1 in 4 black Floridians - to vote during the next Presidential election. We need 544,000 more Florida registered voters to sign this petition by February 1st, 2018 to put this voting rights restoration initiative on the ballot. This is the most important action that we can take today to combat voter suppression in a pivotal state that Trump won by only 113,000 votes.</p>
+            <p>We can make it possible for 1.6 million more Floridians - including 1 in 4 black Floridians - to vote during the next Presidential election. We need 544,000 more Florida registered voters to sign this petition by February 1st, 2018 to put this voting rights restoration initiative on the ballot.</p>
 
-            <h4>Together, we can make this happen in the next <span></span>.</h4>
+            <h4>Together, we can make this happen. HERE'S HOW:</h4>
 
             <div class="row">
               <div class="col-xs-6">
@@ -196,8 +267,11 @@
       </div>
     </section>
 
+    <script>
+      var COST_PER_MAILER = <?= number_format(COST_PER_MAILER, 2) ?>;
+    </script>
     <script src="assets/js/plugins.js"></script>
-    <script src="assets/js/script.js?v1.0.0"></script>
+    <script src="assets/js/script.js?v1.0.2"></script>
   </body>
 
 </html>

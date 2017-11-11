@@ -1,2 +1,7 @@
 .idea
-cache/*
+cache/*.html
+cache/*.json
+config.php
+logs/*.txt
+*.log
+vendor

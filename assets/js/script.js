@@ -35,7 +35,50 @@
     };
   }
 
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  function updateDonateText(price) {
+    if (price && parseInt(price) > 0) {
+      $('#donation-text').html("Donate <b>$" + numberWithCommas(price) + "</b> and we'll mail <b>" + Math.floor(price / COST_PER_MAILER) + "</b> petitions to Florida Registered Voters.");
+
+      $('.selection-group button.donation-choice').each(function(){
+        var selectedPrice = $(this).data('price');
+        if (parseInt(price) === parseInt(selectedPrice)) {
+          $(this).addClass('selected');
+        }  else {
+          $(this).removeClass('selected');
+        }
+      });
+    } else {
+      $('#donation-text').html("Donate <b>$" + COST_PER_MAILER + "</b> and we'll mail <b>1</b> petition to Florida Registered Voters.");
+      $('.selection-group button.donation-choice').removeClass('selected');
+    }
+  }
+
   smoothScrolling();
+
+  $(".modal-overlay").dontScrollParent();
+
+  $('.selection-group button.donation-choice').click(function () {
+    $('.selection-group button.donation-choice').removeClass('selected');
+    $(this).addClass('selected');
+
+    var price = $(this).data('price');
+    $('#amount').val(price);
+    updateDonateText(price);
+  });
+
+  $('#amount').on('change', function () {
+    var price = $(this).val();
+    updateDonateText(price);
+  });
+
+  $('#amount').on('keyup', function () {
+    var price = $(this).val();
+    updateDonateText(price);
+  });
 })();
 
 (function($) {
@@ -116,8 +159,7 @@ $(function() {
   $.getJSON('data', function( data ) {
 
     var daysLeft = moment("20180201", "YYYYMMDD").fromNow(true);
-    $('.map-container h3').html(Math.ceil(data.summary.ballot_percent) + '% of signatures collected. ' + daysLeft + ' left.');
-    $('.signup-text h4 span').html(daysLeft);
+    $('.map-container h3').html('<b class="number">' + Math.ceil(data.summary.ballot_percent) + '%</b> of signatures collected. <span><b class="number">' + daysLeft + '</b> left.</span>');
 
     // Create the chart
     Highcharts.mapChart('container', {

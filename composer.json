@@ -1,0 +1,6 @@
+{
+    "require": {
+        "lob/lob-php": "^2.1",
+        "paypal/merchant-sdk-php": "^3.12"
+    }
+}
