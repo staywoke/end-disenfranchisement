@@ -5,9 +5,9 @@ if(file_exists(dirname(__FILE__) .'/vendor/autoload.php')) {
   require 'vendor/autoload.php';
 }
 
-// if(file_exists(dirname(__FILE__) .'/db.php')) {
-//   require 'db.php';
-// }
+if(file_exists(dirname(__FILE__) .'/config.php')) {
+  require 'config.php';
+}
 
 $config = array(
   "mode" => "sandbox",
@@ -30,6 +30,9 @@ if($ipnMessage->validate()) {
   if (strtolower($response['payment_status']) === 'completed') {
     // @TODO: Fire of LOB API Call & add $response['test_ipn'] !== '1' check
     file_put_contents($fileName, "\nPayment Received. Fire LOB API Call\n", FILE_APPEND | LOCK_EX);
+
+    $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname='.DB_NAME, DB_USER, DB_PASS);
+
   } else {
     file_put_contents($fileName, "\nPayment Not Received, Skip LOB API Call.\n", FILE_APPEND | LOCK_EX);
   }

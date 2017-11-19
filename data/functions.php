@@ -1,5 +1,6 @@
 <?php
 require('counties.php');
+require('../config.php');
 
 /**
  * Get JSON
@@ -23,6 +24,32 @@ function get_json() {
   }
 
   $json = create_json();
+  file_put_contents($file, $json);
+  return $json;
+}
+
+/**
+ * Get JSON
+ * @return json
+ */
+function get_mailings_json() {
+  $file = '../cache/mailings.json';
+  $current_time = time();
+  $expire_time = 300;
+
+  /**
+   * Check if we have a cached version of the file and return it
+   * if it is not more than a day old.
+   */
+  if (file_exists($file)) {
+    $file_time = filemtime($file);
+    $time_difference = $current_time - $expire_time;
+    if ($time_difference < $file_time) {
+      return file_get_contents($file);
+    }
+  }
+
+  $json = create_mailings_json();
   file_put_contents($file, $json);
   return $json;
 }
@@ -208,6 +235,28 @@ function create_json() {
       return json_encode(array('error' => 'Unable to Generate JSON File'), JSON_PRETTY_PRINT);
     }
   }
+}
+
+/**
+ * Fetch ZipCodes Mailers
+ * @return sting
+ */
+function create_mailings_json() {
+  $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname='.DB_NAME, DB_USER, DB_PASS);
+  $mailings = $pdo->query("SELECT `zipcode`, COUNT(*) as 'count' FROM `address_list` WHERE `mailed` = 1 GROUP BY `zipcode` ORDER BY count DESC")->fetchAll(PDO::FETCH_KEY_PAIR);
+
+  $data = array();
+  foreach ($mailings as $zipcode => $count) {
+    $data[] = array(
+      'zipcode' => $zipcode,
+      'count' => intval($count, 10),
+      'z' => intval($count, 10),
+      'lat' => 27.7786988,
+      'lon' => -82.794906
+    );
+  }
+
+  return json_encode($data, JSON_PRETTY_PRINT);
 }
 
 /**

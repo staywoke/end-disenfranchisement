@@ -1,5 +1,4 @@
-/* CSS crunched with Crunch - http://crunchapp.net/ */
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
 
 *, *:before, *:after {
   box-sizing: border-box;
@@ -24,7 +23,7 @@ html, body {
 }
 
 body {
-  font: 16px/28px 'Roboto', sans-serif;
+  font: 16px/28px 'Lato', sans-serif;
   color: #888888;
   font-style: normal;
   font-weight: 400;
@@ -32,7 +31,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Lato', sans-serif;
   font-style: normal;
   font-weight: 600;
   color: #666666;
@@ -161,7 +160,7 @@ a {
   color: #222;
   font-weight: 300;
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Lato', sans-serif;
   letter-spacing: 0.01em;
 }
 
@@ -251,6 +250,10 @@ p {
 .navbar-brand {
   padding: 0 0 0 12px;
 }
+.navbar-brand img {
+  height: 30px;
+  margin: 10px 0;
+}
 .navbar-default .navbar-nav > li > a {
   color: #333;
   letter-spacing: 1px;
@@ -265,9 +268,9 @@ p {
   color: #222;
   text-transform: uppercase;
   line-height: 50px;
-  font-size: 26px;
+  letter-spacing: 6px;
   font-weight: 400;
-  letter-spacing: 2px;
+  font-style: normal;
 }
 
 .navbar-default .navbar-brand:focus,
@@ -425,11 +428,14 @@ ul.share-buttons .sr-only {
     display: none;
   }
   .navbar-default {
-    background: rgba(0,0,0,0.1);
+    background: transparent;
     padding: 0;
   }
   .navbar-collapse {
-    background-color: #FFF;
+    background-color: #f6f5f6;
+    border-color: #f6f5f6;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+    border-top: 1px solid rgba(0,0,0,0.1);
   }
 
   .signup-form {
@@ -525,6 +531,9 @@ button.sign-up {
   text-transform: uppercase;
   color: #000;
   font-size: 18px;
+  line-height: 24px;
+  margin-top: 46px;
+  margin-bottom: 40px;
 }
 .help-button {
   display: block;
@@ -543,11 +552,15 @@ button.sign-up {
   color: #fff;
 }
 b.mb {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   display: block;
   color: #0088df;
   font-weight: 400;
   font-size: 20px;
+}
+
+.action-list {
+ margin-bottom: 40px;
 }
 
 .modal-window {
@@ -558,6 +571,7 @@ b.mb {
   height: 100%;
   overflow: hidden;
   z-index: 5000;
+  display: none;
 }
 
 .modal-wrapper {
@@ -583,6 +597,21 @@ b.mb {
   z-index: 5001;
 }
 
+.close-modal {
+  color: #CCC;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 18px;
+}
+.close-modal:hover {
+  color: #222;
+}
+
 .selection-group {
   padding: 0;
 }
@@ -605,23 +634,41 @@ b.mb {
   margin-bottom: 20px;
   transition: all 0.25s;
   border: 1px solid #CCC;
+  color: #0088df;
+}
+
+.selection-group .donation-choice span {
+  margin-left: 3px;
+  color: #999;
+  font-weight: 300;
 }
 
 .selection-group .donation-choice:hover,
 .selection-group .donation-choice:focus {
   background: #888;
   border: 1px solid #888;
-  color: #FFF;
+  color: #FFFFFF;
   outline: none;
+}
+
+.selection-group .donation-choice:hover span,
+.selection-group .donation-choice:focus span {
+  color: #111;
 }
 
 .selection-group .donation-choice.selected,
 .selection-group .donation-choice.selected:hover,
 .selection-group .donation-choice.selected:focus {
   background: #222;
-  color: #FFF;
+  color: #96d6ff;
   outline: none;
   border: 1px solid #222;
+}
+
+.selection-group .donation-choice.selected span,
+.selection-group .donation-choice.selected:hover span,
+.selection-group .donation-choice.selected:focus span {
+  color: #BBB;
 }
 
 #donation-text {
@@ -634,6 +681,7 @@ b.mb {
 
 #donation-text b {
   font-weight: 600;
+  color: #0088df;
 }
 
 #amount {
@@ -663,7 +711,155 @@ h3.modal-title {
   text-align: center;
 }
 
+h3.modal-title a {
+  font-style: italic;
+}
+
+h3.modal-title a:hover, h3.modal-title a:focus {
+  text-decoration: none;
+  color: #0088df;
+}
+
+.thank-you {
+  background: url(../images/sendmail.gif) center center no-repeat;
+  background-size: cover;
+  width: 320px;
+  height: 280px;
+  margin: 0 auto;
+  position: relative;
+  margin-top: calc(50vh - 140px);
+}
+
+.thank-you h1 {
+  font-weight: 300;
+  font-size: 30px;
+  text-transform: uppercase;
+  text-align: center;
+  position: absolute;
+  top: 45px;
+  width: 100%;
+  opacity:0;
+  -webkit-animation:fadeIn ease-in 1;
+  -moz-animation:fadeIn ease-in 1;
+  animation:fadeIn ease-in 1;
+  animation-duration:1s;
+  -webkit-animation-fill-mode:forwards;
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+}
+
+.thank-you div {
+  font-weight: 300;
+  font-size: 20px;
+  text-transform: uppercase;
+  text-align: center;
+  position: absolute;
+  bottom: 50px;
+  opacity:0;
+  width: 100%;
+  -webkit-animation:fadeIn ease-in 1;
+  -moz-animation:fadeIn ease-in 1;
+  animation:fadeIn ease-in 1;
+  animation-duration:1s;
+  -webkit-animation-delay: 1.5s;
+  -moz-animation-delay: 1.5s;
+  animation-delay: 1.5s;
+  -webkit-animation-fill-mode:forwards;
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+}
+
+.sticky-action-bar {
+  background: #222;
+  position: fixed;
+  bottom: 0;
+  left: calc(50vw - 180px);
+  width: 360px;
+  height: 50px;
+  line-height: 50px;
+}
+
+.sticky-action-bar .row {
+  margin: 0;
+}
+
+.sticky-action-bar .col-xs-6 {
+  margin: 0;
+  padding: 0;
+}
+
+.sticky-action-bar a {
+  color: #FFF;
+  font-size: 12px;
+  text-align: center;
+  display: block;
+  line-height: 50px;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  text-transform: uppercase;
+}
+
+.sticky-action-bar a:hover, .sticky-action-bar a:focus {
+  background: #0388df;
+  text-decoration: none;
+}
+
+.sticky-action-bar a.last {
+  border-right: none;
+}
+
+span.error-message {
+  color: #CC0000;
+  font-weight: 400;
+}
+
+span.success-message {
+  color: #0388df;
+  font-weight: 400;
+}
+
+p.instructions {
+  font-weight: 300;
+  line-height: 18px;
+  color: #000;
+}
+
+textarea {
+  font-weight: 300;
+  line-height: 18px;
+  min-height: 145px;
+  width: 100%;
+  padding: 14px;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  color: #000;
+  -webkit-overflow-scrolling: touch;
+  resize: none;
+  -webkit-box-shadow: inset 0 4px 4px -4px rgba(0,0,0,0.25);
+  -moz-box-shadow: inset 0 4px 4px -4px rgba(0,0,0,0.25);
+  box-shadow: inset 0 4px 4px -4px rgba(0,0,0,0.25);
+}
+
+textarea:focus {
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+/* Keyframes for the fade-in */
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
 @media (max-width: 768px) {
+  .sticky-action-bar {
+    background: #222;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+  }
   .top-donation-btn-container {
     padding: 0;
     top: -1px;
@@ -699,11 +895,34 @@ h3.modal-title {
     padding-right: 0;
     padding-left: 0;
   }
+  .navbar-brand img {
+    height: 24px;
+    margin: 12px 0;
+  }
+  .main-header {
+    position: fixed;
+    background-color: #f6f5f6;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+}
+
+@media (max-width: 414px) {
+  h3.modal-title {
+    text-align: left;
+    font-size: 14px;
+    max-width: 90%;
+  }
+
+  textarea {
+    min-height: 250px;
+  }
 }
 
 @media (max-width: 320px) {
   .modal-wrapper {
-    top: 9%;
+    top: 5%;
   }
-
+  textarea {
+    min-height: 280px;
+  }
 }

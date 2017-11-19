@@ -5,3 +5,6 @@ config.php
 logs/*.txt
 *.log
 vendor
+sql/data.sql
+embed.html
+test.php
