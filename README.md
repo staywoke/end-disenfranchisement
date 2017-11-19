@@ -8,10 +8,19 @@ Embed Instructions
 
 ![Widget](screenshot.png "Widget")
 
-To Embed this Widget into Your Website, add the following Script Tag wherever you want the widget to show up:
+To Embed this Widget into Your Website, add the following Script Tag wherever you want the widget to show up.
 
 ```html
 <script src="https://florida.ourstates.org/embed.js" id="ourstates-florida-script" defer></script>
 ```
 
-**NOTE:** The widget is 332px wide by 568px tall.  ( Internal width of 320px with a scrollbar width of 12px )
+If you would like to customize the size of the widget, you can add custom CSS to your site.  Just note that we did not design for widths less than `320px`.
+
+```html
+<style>
+#ourstates-florida-widget {
+  width: 500px !important;
+  height: 500px !important;
+}
+</style>
+```
