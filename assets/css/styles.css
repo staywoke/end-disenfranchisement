@@ -313,6 +313,8 @@ nav ul, nav li {
 .map-container {
   margin: 0 auto;
   padding-top: 15vh;
+  opacity: 0;
+  transition: opacity 0.25s ease;
 }
 
 .map-container h1 {
@@ -327,6 +329,22 @@ nav ul, nav li {
   text-transform: uppercase;
 }
 
+.map-container h2 {
+  margin: 0 auto;
+  width: 80%;
+  max-width: 800px;
+  text-align: center;
+  font-weight: 300;
+  font-size: 20px;
+  margin-bottom: 20px;
+  line-height: 24px;
+}
+
+.map-container h2 span, .map-container h2 a {
+  font-weight: 400;
+  color: #0388df;
+}
+
 .map-container h3 {
   margin: 0 auto;
   width: 80%;
@@ -336,8 +354,8 @@ nav ul, nav li {
   font-size: 20px;
   margin-bottom: 20px;
   line-height: 24px;
-  text-transform: uppercase;
 }
+
 .map-container h3 b.number {
   font-weight: 400;
   color: #0388df;
@@ -494,7 +512,7 @@ ul.share-buttons .sr-only {
 }
 .signup-text a {
   color: #000000;
-  font-weight: 400;
+  font-weight: 300;
 }
 .signup-text a:hover {
   color: #0088df;
@@ -845,6 +863,52 @@ textarea:focus {
   border: 1px solid rgba(0, 0, 0, 0.25);
 }
 
+.live-in-florida a {
+  text-align: center;
+  display: block;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: #AAA;
+  font-size: 12px;
+  padding-top: 8px;
+  line-height: 14px;
+}
+
+.live-in-florida a:hover {
+  text-decoration: none;
+  color: #0388df;
+}
+
+.about-us p {
+  text-align: left;
+  padding: 14px;
+  line-height: 28px;
+}
+
+.our-partners h3 {
+  font-weight: 300;
+  font-size: 22px;
+  color: #000;
+}
+
+.our-partners a {
+  padding: 20px;
+  display: block;
+}
+
+.our-partners img {
+  max-width: 100%;
+  filter: grayscale(1);
+  opacity: 0.5;
+  transition: all 0.25s ease;
+}
+
+.our-partners img:hover {
+  max-width: 100%;
+  opacity: 1;
+  filter: grayscale(0);
+}
+
 /* Keyframes for the fade-in */
 @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
@@ -869,13 +933,22 @@ textarea:focus {
   .main-header .top-donate-btn {
     padding: 8px 16px;
   }
+  .map-container {
+    padding-top: 13vh;
+  }
   .map-container h1 {
-    line-height: 24px;
-    font-size: 20px;
+    line-height: 22px;
+    font-size: 18px;
+  }
+  .map-container h2 {
+    line-height: 16px;
+    font-size: 16px;
+    margin-bottom: 14px;
   }
   .map-container h3 {
-    line-height: 18px;
+    line-height: 16px;
     font-size: 16px;
+    margin-bottom: 14px;
   }
   .signup-text h2 {
     font-size: 30px;
@@ -904,6 +977,10 @@ textarea:focus {
     background-color: #f6f5f6;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   }
+  .our-partners img {
+    filter: grayscale(0);
+    opacity: 1;
+  }
 }
 
 @media (max-width: 414px) {
@@ -920,7 +997,7 @@ textarea:focus {
 
 @media (max-width: 320px) {
   .modal-wrapper {
-    top: 5%;
+    top: 20px;
   }
   textarea {
     min-height: 280px;

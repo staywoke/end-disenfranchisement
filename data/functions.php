@@ -34,19 +34,9 @@ function get_json() {
  */
 function get_mailings_json() {
   $file = '../cache/mailings.json';
-  $current_time = time();
-  $expire_time = 300;
 
-  /**
-   * Check if we have a cached version of the file and return it
-   * if it is not more than a day old.
-   */
   if (file_exists($file)) {
-    $file_time = filemtime($file);
-    $time_difference = $current_time - $expire_time;
-    if ($time_difference < $file_time) {
-      return file_get_contents($file);
-    }
+    return file_get_contents($file);
   }
 
   $json = create_mailings_json();
@@ -243,20 +233,22 @@ function create_json() {
  */
 function create_mailings_json() {
   $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname='.DB_NAME, DB_USER, DB_PASS);
-  $mailings = $pdo->query("SELECT `zipcode`, COUNT(*) as 'count' FROM `address_list` WHERE `mailed` = 1 GROUP BY `zipcode` ORDER BY count DESC")->fetchAll(PDO::FETCH_KEY_PAIR);
+  $mailings = $pdo->query("SELECT `a`.`zipcode`, COUNT(`a`.`id`) as 'count', `z`.`latitude` AS latitude, `z`.`longitude` AS longitude FROM `address_list` a LEFT JOIN `zipcode` z ON `a`.`zipcode` = `z`.`zipcode` WHERE `a`.`mailed` = 1 GROUP BY `a`.`zipcode`, `z`.`latitude`, `z`.`longitude`")->fetchAll(PDO::FETCH_ASSOC);
 
+  $total = 0;
   $data = array();
-  foreach ($mailings as $zipcode => $count) {
+  foreach ($mailings as $row) {
+    $total += intval($row['count'], 10);
     $data[] = array(
-      'zipcode' => $zipcode,
-      'count' => intval($count, 10),
-      'z' => intval($count, 10),
-      'lat' => 27.7786988,
-      'lon' => -82.794906
+      'zipcode' => $row['zipcode'],
+      'count' => intval($row['count'], 10),
+      'z' => intval($row['count'], 10),
+      'lat' => $row['latitude'],
+      'lon' => $row['longitude']
     );
   }
 
-  return json_encode($data, JSON_PRETTY_PRINT);
+  return json_encode(array('total' => $total, 'zipcodes' => $data), JSON_PRETTY_PRINT);
 }
 
 /**

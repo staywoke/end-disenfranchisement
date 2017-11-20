@@ -16,6 +16,10 @@ function registerToVote () {
   return confirm('Live in Florida but not yet registered to vote? Register Online.');
 }
 
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 (function () {
   function smoothScrolling() {
 
@@ -51,10 +55,6 @@ function registerToVote () {
       timeout = setTimeout(later, wait);
       if (callNow) func.apply(context, args);
     };
-  }
-
-  function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
   function updateDonateText(price) {
@@ -114,6 +114,12 @@ function registerToVote () {
 
     $("#signup-form").notifyMe();
 
+    $('.donation-choice').each(function(){
+      var price = $(this).data('price');
+      var petitions = Math.floor(price / COST_PER_MAILER);
+      $(this).html(petitions + '<span>$' + price + '</span>');
+    });
+
     $(window).scroll(debounce(function() {
       if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
         $('.sticky-action-bar').stop().fadeOut(250);
@@ -159,11 +165,25 @@ var renderMap = function () {
   var today = moment().startOf('day');
   var daysLeft = Math.round(moment.duration(deadline - today).asDays());
   var percentCollected = Math.ceil(mapData.signatures.summary.ballot_percent);
+  var signaturesNeeded = Math.round(mapData.signatures.summary.ballot_needed - mapData.signatures.summary.ballot_total);
+
+  if (signaturesNeeded < 0) {
+    signaturesNeeded = 0;
+  }
+
+  $('.map-widget span.signatures_needed').text(numberWithCommas(signaturesNeeded));
+  $('.signup-text span.signatures_needed').text(numberWithCommas(signaturesNeeded));
+  $('.map-widget span.days_left').text(daysLeft + ' days');
+  $('.map-container').css({ 'opacity': 1 });
 
   trackEvent('Map', 'Data Loaded', 'Percent Collected', percentCollected);
   trackEvent('Map', 'Data Loaded', 'Days Left', daysLeft);
 
-  $('.map-container h3').html('<b class="number">' + Math.ceil(percentCollected) + '%</b> of signatures collected. <span><b class="number">' + daysLeft + ' Days</b> left.</span>');
+  var petitions = (mapData.mailings.total === 1) ? 'petition' : 'petitions';
+  var collectedText = '<b class="number">' + Math.ceil(percentCollected) + '%</b> of petitions collected.';
+  var petitionText = (mapData.mailings.total > 0) ? '<b class="number">' + mapData.mailings.total + '</b> ' + petitions + ' mailed.' : '';
+
+  $('.map-container h3').html(collectedText + ' ' + petitionText);
 
   // Create the chart
   Highcharts.mapChart('container', {
@@ -213,22 +233,7 @@ var renderMap = function () {
         type: 'mapbubble',
         name: 'Mailings',
         color: '#0088df',
-        data: [
-          {
-            name: "33701",
-            count: 3,
-            z: 3,
-            lat: 26.8899598,
-            lon: -80.8983643
-          },
-          {
-            name: "32003",
-            count: 3,
-            z: 3,
-            lat: 27.7786988,
-            lon: -82.794906
-          }
-        ],
+        data: mapData.mailings.zipcodes,
         maxSize: '12%'
       }
     ]

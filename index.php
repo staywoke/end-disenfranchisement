@@ -35,6 +35,7 @@ require 'config.php';
 
   <body>
 
+    <!-- Start Facebook Modal -->
     <div class="modal-window" id="facebook-modal">
       <div class="modal-wrapper">
         <div class="container-fluid selection-group">
@@ -58,6 +59,7 @@ require 'config.php';
       <div class="modal-overlay" onclick="closeFacebookModal()"></div>
     </div>
 
+    <!-- Start Donate Modal -->
     <div class="modal-window" id="donate-modal">
       <div class="modal-wrapper">
         <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
@@ -78,31 +80,31 @@ require 'config.php';
 
           <div class="container-fluid selection-group">
             <div class="row">
-              <h3 class="modal-title">How many petitions do you want to mail? &nbsp;<a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()">Already live in Florida?</a></h3>
+              <h3 class="modal-title">How many petitions do you want to mail?</h3>
               <a href="#" onclick="closeModal(); return false;" class="close-modal">
                 <i class="fa fa-times"></i>
               </a>
             </div>
             <div class="row">
               <div class="col-sm-3">
-                <button type="button" class="btn btn-block donation-choice" data-price="5">6 <span>$5</span></button>
+                <button type="button" class="btn btn-block donation-choice" data-price="5"></button>
               </div>
               <div class="col-sm-3">
-                <button type="button" class="btn btn-block donation-choice" data-price="10">12 <span>$10</span></button>
+                <button type="button" class="btn btn-block donation-choice" data-price="10"></button>
               </div>
               <div class="col-sm-3">
-                <button type="button" class="btn btn-block donation-choice" data-price="20">24 <span>$20</span></button>
+                <button type="button" class="btn btn-block donation-choice" data-price="20"></button>
               </div>
               <div class="col-sm-3">
-                <button type="button" class="btn btn-block donation-choice" data-price="50">60 <span>$50</span></button>
+                <button type="button" class="btn btn-block donation-choice" data-price="50"></button>
               </div>
             </div>
             <div class="row">
               <div class="col-sm-3">
-                <button type="button" class="btn btn-block donation-choice" data-price="100">121 <span>$100</span></button>
+                <button type="button" class="btn btn-block donation-choice" data-price="100"></button>
               </div>
               <div class="col-sm-3">
-                <button type="button" class="btn btn-block donation-choice" data-price="500">609 <span>$500</span></button>
+                <button type="button" class="btn btn-block donation-choice" data-price="500"></button>
               </div>
               <div class="col-sm-6">
                 <div class="input-group mb-2 mb-sm-0">
@@ -119,6 +121,9 @@ require 'config.php';
                 <button type="submit" class="btn btn-block make-donation">Send</button>
               </div>
             </div>
+            <div class="row live-in-florida">
+              <a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()">Already live in Florida?&nbsp; Click here to sign the petition.</a>
+            </div>
           </div>
         </form>
       </div>
@@ -126,8 +131,6 @@ require 'config.php';
     </div>
 
     <!--  HEADER -->
-
-    <!--<header class="main-header transparent-header">-->
     <header class="main-header clearfix">
 
       <section class="header-wrapper">
@@ -156,6 +159,9 @@ require 'config.php';
                   <a href="#sign-up" title="">SIGN UP</a>
                 </li>
                 <li>
+                  <a href="#about-us" title="">ABOUT US</a>
+                </li>
+                <li>
                   <a href="#donate" onclick="openModal(); return false;">DONATE</a>
                 </li>
               </ul>
@@ -168,31 +174,26 @@ require 'config.php';
 
     </header> <!-- end main-header  -->
 
-    <!--  HOME SLIDER BLOCK  -->
-
-    <!-- slider start -->
+    <!-- MAP -->
     <section class="map-widget">
       <div class="map-container">
         <h1>We can give 1.6 million people in Florida the right to vote.</h1>
+        <h2><span class="signatures_needed"></span> more Floridians need to sign the <a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()">petition</a> in the next <span class="days_left"></span>.</h1>
         <h3>&nbsp;</h3>
         <a href="#take-action" class="btn btn-dark btn-block help-button">Take Action</a>
         <div id="container"></div>
       </div>
     </section>
-    <!-- slider end -->
 
-    <!--  CTA SECTION  -->
-
+    <!-- SIGN UP -->
     <a name="sign-up"></a>
     <section class="cta-section-3">
-
       <div class="container">
-
         <div class="row">
 
           <div class="col-md-8 col-sm-12 text-left signup-text">
             <h2>We Need Your Help</h2>
-            <p>We can make it possible for 1.6 million more Floridians - including 1 in 4 black Floridians - to vote during the next Presidential election. We need 544,000 more Florida registered voters to sign this petition by February 1st, 2018 to put this voting rights restoration initiative on the ballot.</p>
+            <p>We can make it possible for 1.6 million more Floridians - including 1 in 4 black Floridians - to vote during the next Presidential election. We need <span class="signatures_needed"></span> more Florida registered voters to sign this petition by February 1st, 2018 to put this voting rights restoration initiative on the ballot.</p>
 
             <h4>
               <a name="take-action"></a>
@@ -201,22 +202,22 @@ require 'config.php';
 
             <div class="row">
               <div class="col-md-6">
-                <b class="mb">I Live in Florida:</b>
-
-                <ul class="action-list">
-                  <li><a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()">Print Petition</a>, fill it out &amp; return it by mail.</li>
-                  <li>Not Registered to Vote? <a href="https://registertovoteflorida.gov" title="Register to Vote" target="_blank" onclick="return registerToVote();">Register Online</a>.</li>
-                  <li><a href="#" onclick="openFacebookModal(); return false;">Tell Florida Facebook Friends</a> to sign the petition.</li>
-                  <li><a href="#donate" onclick="openModal(); return false;">Donate</a> to mail petitions to Florida voters</li>
-                </ul>
-              </div>
-
-              <div class="col-md-6 ">
                 <b class="mb">I Don't Live in Florida:</b>
 
                 <ul class="action-list">
-                  <li><a href="#" onclick="openFacebookModal(); return false;">Tell Florida Facebook Friends</a> to sign the petition.</li>
-                  <li><a href="#donate" onclick="openModal(); return false;">Donate</a> to mail petitions to Florida voters</li>
+                  <li><a href="#" onclick="openFacebookModal(); return false;">Tell Florida Facebook Friends to sign the petition.</a></li>
+                  <li><a href="#donate" onclick="openModal(); return false;">Send petitions to Florida voters.</a></li>
+                </ul>
+              </div>
+
+              <div class="col-md-6">
+                <b class="mb">I Live in Florida:</b>
+
+                <ul class="action-list">
+                  <li><a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()">Print Petition, fill it out &amp; return it by mail.</a></li>
+                  <li><a href="https://registertovoteflorida.gov" title="Register to Vote" target="_blank" onclick="return registerToVote();">Not Registered to Vote? Register Online</a>.</li>
+                  <li><a href="#" onclick="openFacebookModal(); return false;">Tell Florida Facebook Friends to sign the petition.</a></li>
+                  <li><a href="#donate" onclick="openModal(); return false;">Send petitions to Florida voters.</a></li>
                 </ul>
               </div>
             </div>
@@ -258,7 +259,7 @@ require 'config.php';
                 </div>
 
                 <div class="col-xs-12 button">
-                  <button type="submit" class="btn btn-dark btn-block sign-up">Sign up to Door Knock</button>
+                  <button type="submit" class="btn btn-dark btn-block sign-up">Sign up to Get Involved</button>
                 </div>
               </div>
 
@@ -272,6 +273,37 @@ require 'config.php';
 
     </section> <!-- end .cta-section-3  -->
 
+    <!-- ABOUT US -->
+    <a name="about-us"></a>
+    <section class="cta-section-3">
+      <div class="container">
+        <div class="about-us">
+          <h2>About Us</h2>
+          <p>This platform, a project of <a href="http://staywoke.org" target="_blank">StayWoke</a>, was built in partnership with the <a href="https://floridarrc.com/" target="_blank">Florida Rights Restoration Coalition</a> and other local organizers in Florida to help collect the necessary petition signatures to put voter rights restoration on the 2018 Florida ballot. With assistance from <a href="https://www.rockthevote.org/" target="_blank">Rock The Vote</a>, <a href="https://www.aclu.org/" target="_blank">ACLU</a> and the mailing company <a href="https://lob.com/" target="_blank">Lob</a>, we’ve built a crowdsourced mailing system that will send petitions, including prepaid return postage, directly to thousands of registered voters in the state at minimal cost. Based on the results of this effort, we hope to expand this strategy to help put progressive policies on the ballot in other states as well.</p>
+        </div>
+
+        <div class="our-partners">
+          <h3>Our Partners</h3>
+          <div class="col-md-4">
+            <a href="https://www.aclu.org/" target="_blank">
+              <img src="assets/images/aclu.png" />
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a href="https://floridarrc.com/" target="_blank">
+              <img src="assets/images/frrc.png" />
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a href="https://www.rockthevote.org/" target="_blank">
+              <img src="assets/images/rtv.png" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
     <section>
       <div class="row social-share">
         <div class="col-sm-12">
@@ -299,10 +331,10 @@ require 'config.php';
     <div class="sticky-action-bar">
       <div class="row">
         <div class="col-xs-6">
-          <a href="#" onclick="openFacebookModal(); return false;">Tell Your Friends</a>
+          <a href="#donate" onclick="openModal(); return false;">Send Petitions</a>
         </div>
         <div class="col-xs-6">
-          <a href="#donate" onclick="openModal(); return false;" class="last">Send Petitions</a>
+          <a href="#" onclick="openFacebookModal(); return false;" class="last">Tell Your Friends</a>
         </div>
       </div>
     </div>
@@ -312,6 +344,18 @@ require 'config.php';
     </script>
     <script src="assets/js/plugins.js?v=<?= VERSION_NUMBER ?>"></script>
     <script src="assets/js/script.js?v=<?= VERSION_NUMBER ?>"></script>
-  </body>
+  <?php if (ENABLE_ANALYTICS): ?>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-109823518-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  <?php endif; ?>
 
+  </body>
 </html>

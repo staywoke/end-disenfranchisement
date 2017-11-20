@@ -31,7 +31,11 @@ if($ipnMessage->validate()) {
     // @TODO: Fire of LOB API Call & add $response['test_ipn'] !== '1' check
     file_put_contents($fileName, "\nPayment Received. Fire LOB API Call\n", FILE_APPEND | LOCK_EX);
 
+    // Fetch New Mailings
     $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname='.DB_NAME, DB_USER, DB_PASS);
+
+    // Remove old Mailings File now that Database is Updated
+    unlink(dirname(__FILE__) . '/cache/mailings.json');
 
   } else {
     file_put_contents($fileName, "\nPayment Not Received, Skip LOB API Call.\n", FILE_APPEND | LOCK_EX);
