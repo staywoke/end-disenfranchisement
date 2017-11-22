@@ -24,3 +24,25 @@ If you would like to customize the size of the widget, you can add custom CSS to
 }
 </style>
 ```
+
+Developer Instructions
+---
+
+**Requirements:**
+
+* [PHP 7.0+](http://php.net/)
+* [MySQL 5.7+](https://www.mysql.com/)
+* [LOB API Keys](https://lob.com/)
+* [PayPal Business ID](https://paypal.com/)
+
+**Setup:**
+
+```bash
+cd /path/to/web/root
+git clone git@github.com:staywoke/end-disenfranchisement.git .
+./composer install
+cp config.dist.php config.php
+nano config.php
+```
+
+Then just edit the defined constants in the `config.php` file.

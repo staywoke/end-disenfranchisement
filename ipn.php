@@ -12,7 +12,7 @@ if(file_exists(dirname(__FILE__) .'/config.php')) {
 }
 
 $config = array(
-  "mode" => (LOB_TEST_MODE) ? 'SANDBOX' : 'LIVE',
+  "mode" => (TEST_MODE) ? 'SANDBOX' : 'LIVE',
 );
 
 $ipnMessage = new PPIPNMessage(null, $config);
@@ -83,7 +83,7 @@ if($ipnMessage->validate()) {
     }
 
     // Fire off letters
-    $api_key = (LOB_TEST_MODE) ? LOB_TEST_API_KEY : LOB_LIVE_API_KEY;
+    $api_key = (TEST_MODE) ? LOB_TEST_API_KEY : LOB_LIVE_API_KEY;
     $lob = new \Lob\Lob($api_key);
 
     $from_address = $lob->addresses()->create(array(
