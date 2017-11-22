@@ -909,6 +909,10 @@ textarea:focus {
   filter: grayscale(0);
 }
 
+.alt-row {
+  background-color: #f5f5f5;
+}
+
 /* Keyframes for the fade-in */
 @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }

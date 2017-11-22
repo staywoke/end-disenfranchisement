@@ -52,7 +52,7 @@ require 'config.php';
 
           <textarea>Hey, I’m working to help collect petition signatures for a ballot initiative in Florida that would restore voting rights to 1.6 million people in the state. Help us put this on the Florida ballot by printing this petition, filling it out, and returning it to Floridians for Fair Democracy (the address is on the petition): https://florida.ourstates.org/pdf/petition.pdf</textarea>
 
-          <a href="https://www.facebook.com/search/str/florida/keywords_users" target="_blank" class="btn btn-block make-donation">Get Started</a>
+          <a href="https://www.facebook.com" target="_blank" class="btn btn-block make-donation">Get Started</a>
 
         </div>
       </div>
@@ -115,7 +115,7 @@ require 'config.php';
             </div>
             <div class="row">
               <div class="col-sm-9" id="donation-text">
-                Donate <b>$<?= number_format(COST_PER_MAILER, 2) ?></b> and we'll mail <b>1</b> petition to Florida Registered Voters.
+                For every <b>$1</b> you donate, we’ll mail <b>4</b> petitions to FL registered voters.
               </div>
               <div class="col-sm-3">
                 <button type="submit" class="btn btn-block make-donation">Send</button>
@@ -275,7 +275,7 @@ require 'config.php';
 
     <!-- ABOUT US -->
     <a name="about-us"></a>
-    <section class="cta-section-3">
+    <section class="cta-section-3 alt-row">
       <div class="container">
         <div class="about-us">
           <h2>About Us</h2>
@@ -284,19 +284,24 @@ require 'config.php';
 
         <div class="our-partners">
           <h3>Our Partners</h3>
-          <div class="col-md-4">
-            <a href="https://www.aclu.org/" target="_blank">
+          <div class="col-md-3">
+            <a href="https://www.aclu.org" target="_blank">
               <img src="assets/images/aclu.png" />
             </a>
           </div>
-          <div class="col-md-4">
-            <a href="https://floridarrc.com/" target="_blank">
+          <div class="col-md-3">
+            <a href="https://floridarrc.com" target="_blank">
               <img src="assets/images/frrc.png" />
             </a>
           </div>
-          <div class="col-md-4">
-            <a href="https://www.rockthevote.org/" target="_blank">
+          <div class="col-md-3">
+            <a href="https://www.rockthevote.org" target="_blank">
               <img src="assets/images/rtv.png" />
+            </a>
+          </div>
+          <div class="col-md-3">
+            <a href="https://www.floridiansforafairdemocracy.com" target="_blank">
+              <img src="assets/images/second-chances.png" />
             </a>
           </div>
         </div>

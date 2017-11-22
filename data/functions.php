@@ -239,13 +239,15 @@ function create_mailings_json() {
   $data = array();
   foreach ($mailings as $row) {
     $total += intval($row['count'], 10);
-    $data[] = array(
-      'zipcode' => $row['zipcode'],
-      'count' => intval($row['count'], 10),
-      'z' => intval($row['count'], 10),
-      'lat' => $row['latitude'],
-      'lon' => $row['longitude']
-    );
+    if ($row['latitude'] && $row['longitude']) {
+      $data[] = array(
+        'zipcode' => $row['zipcode'],
+        'count' => intval($row['count'], 10),
+        'z' => intval($row['count'], 10),
+        'lat' => $row['latitude'],
+        'lon' => $row['longitude']
+      );
+    }
   }
 
   return json_encode(array('total' => $total, 'zipcodes' => $data), JSON_PRETTY_PRINT);

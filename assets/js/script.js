@@ -59,7 +59,7 @@ function numberWithCommas(x) {
 
   function updateDonateText(price) {
     if (price && parseInt(price) > 0) {
-      $('#donation-text').html("Donate <b>$" + numberWithCommas(price) + "</b> and we'll mail <b>" + Math.floor(price / COST_PER_MAILER) + "</b> petitions to Florida Registered Voters.");
+      $('#donation-text').html("Donate <b>$" + numberWithCommas(price) + "</b> and we'll mail <b>" + Math.floor(price / COST_PER_MAILER) + "</b> petitions to FL registered voters.");
 
       $('.selection-group button.donation-choice').each(function(){
         var selectedPrice = $(this).data('price');
@@ -73,7 +73,7 @@ function numberWithCommas(x) {
       trackEvent('Form', 'Data Entry', 'Update Donation', price);
 
     } else {
-      $('#donation-text').html("Donate <b>$" + COST_PER_MAILER + "</b> and we'll mail <b>1</b> petition to Florida Registered Voters.");
+      $('#donation-text').html("For every <b>$1</b> you donate, we’ll mail <b>4</b> petitions to FL registered voters.");
       $('.selection-group button.donation-choice').removeClass('selected');
     }
   }
