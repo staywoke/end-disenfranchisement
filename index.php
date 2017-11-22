@@ -1,4 +1,4 @@
-<?php
+ability to vote<?php
 if (!file_exists('config.php')) {
   exit('Missing config.php');
 }
@@ -177,7 +177,7 @@ require 'config.php';
     <!-- MAP -->
     <section class="map-widget">
       <div class="map-container">
-        <h1>We can give 1.6 million people in Florida the right to vote.</h1>
+        <h1>We can give 1.6 million people in Florida the ability to vote.</h1>
         <h2><span class="signatures_needed"></span> more Floridians need to sign the <a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()">petition</a> in the next <span class="days_left"></span>.</h1>
         <h3>&nbsp;</h3>
         <a href="#take-action" class="btn btn-dark btn-block help-button">Take Action</a>
@@ -278,7 +278,7 @@ require 'config.php';
     <section class="cta-section-3 alt-row">
       <div class="container">
         <div class="about-us">
-          <p>This platform, a project of <a href="http://staywoke.org" target="_blank">StayWoke</a>, was built in partnership with the <a href="https://floridarrc.com/" target="_blank">Florida Rights Restoration Coalition</a> and other local organizers in Florida to help collect the necessary petition signatures to put voter rights restoration on the 2018 Florida ballot. With assistance from <a href="https://www.rockthevote.org/" target="_blank">Rock The Vote</a>, <a href="https://www.aclu.org/" target="_blank">ACLU</a>, we’ve built a crowdsourced mailing system that will send petitions, including prepaid return postage, directly to thousands of registered voters in the state at minimal cost. Based on the results of this effort, we hope to expand this strategy to help put progressive policies on the ballot in other states as well.</p>
+          <p>This platform, a project of <a href="http://staywoke.org" target="_blank">StayWoke</a>, was built in partnership with the <a href="https://floridarrc.com/" target="_blank">Florida Rights Restoration Coalition</a> and other local organizers in Florida to help collect the necessary petition signatures to put voter rights restoration on the 2018 Florida ballot. With assistance from <a href="https://www.rockthevote.org/" target="_blank">Rock The Vote</a> and <a href="https://www.aclu.org/" target="_blank">ACLU</a>, we’ve built a crowdsourced mailing system that will send petitions, including prepaid return postage, directly to thousands of registered voters in the state at minimal cost. Based on the results of this effort, we hope to expand this strategy to help put progressive policies on the ballot in other states as well.</p>
         </div>
 
         <div class="our-partners">
