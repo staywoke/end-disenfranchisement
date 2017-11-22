@@ -1,4 +1,4 @@
-ability to vote<?php
+<?php
 if (!file_exists('config.php')) {
   exit('Missing config.php');
 }

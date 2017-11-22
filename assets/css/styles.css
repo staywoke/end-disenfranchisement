@@ -410,6 +410,10 @@ ul.share-buttons li a {
   height: 50px;
 }
 
+ul.share-buttons li a i {
+  line-height: 50px;
+}
+
 ul.share-buttons li a:hover {
   color: #0088df;
 }
