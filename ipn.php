@@ -114,9 +114,9 @@ if($ipnMessage->validate()) {
           'color' => true
         ));
 
-        $pdo->query('UPDATE address_list SET `mailed` = 1, `processed` = 1, `status` = "Letter Sent" WHERE `id` = ' . $row['id']);
+        $pdo->query('UPDATE address_list SET `mailed` = 1, `processed` = 1, `status` = "Letter Sent", `process_date` = NOW() WHERE `id` = ' . $row['id']);
       } catch (Exception $e) {
-        $pdo->query('UPDATE `address_list` SET `processed` = 1, `status` = "' . $e->getMessage() . '" WHERE `id` = ' . $row['id']);
+        $pdo->query('UPDATE `address_list` SET `processed` = 1, `status` = "' . $e->getMessage() . '", `process_date` = NOW() WHERE `id` = ' . $row['id']);
       }
     }
 

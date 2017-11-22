@@ -13,7 +13,7 @@ require 'config.php';
     <meta charset="utf-8">
     <title>End Disenfranchisement</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="We need your help. We can make it possible for 1.6 million more Floridians - including 1 in 4 black Floridians - to vote during the next Presidential election.">
+    <meta name="description" content="We need your help. We can make it possible for 1.6 million more Floridians to vote.">
     <link rel="shortcut icon" href="assets/images/favicon.png" />
 
     <!-- The styles -->
@@ -23,7 +23,7 @@ require 'config.php';
 
     <meta property="og:url" content="<?= BASE_URL ?>" />
     <meta property="og:title" content="End Disenfranchisement" />
-    <meta property="og:description" content="We need your help. We can make it possible for 1.6 million more Floridians - including 1 in 4 black Floridians - to vote during the next Presidential election." />
+    <meta property="og:description" content="We need your help. We can make it possible for 1.6 million more Floridians to vote." />
     <meta property="og:image" content="<?= BASE_URL ?>/assets/images/card-image.jpg" />
 
     <meta name="twitter:image" content="<?= BASE_URL ?>/assets/images/card-image.jpg" />
@@ -193,7 +193,7 @@ require 'config.php';
 
           <div class="col-md-8 col-sm-12 text-left signup-text">
             <h2>We Need Your Help</h2>
-            <p>We can make it possible for 1.6 million more Floridians - including 1 in 4 black Floridians - to vote during the next Presidential election. We need <span class="signatures_needed"></span> more Florida registered voters to sign this petition by February 1st, 2018 to put this voting rights restoration initiative on the ballot.</p>
+            <p>We can make it possible for 1.6 million more Floridians to vote. We need <span class="signatures_needed"></span> more Florida registered voters to sign this petition by February 1st, 2018 to put this voting rights restoration initiative on the ballot.</p>
 
             <h4>
               <a name="take-action"></a>
@@ -205,8 +205,8 @@ require 'config.php';
                 <b class="mb">I Don't Live in Florida:</b>
 
                 <ul class="action-list">
-                  <li><a href="#" onclick="openFacebookModal(); return false;">Tell Florida Facebook Friends to sign the petition.</a></li>
                   <li><a href="#donate" onclick="openModal(); return false;">Send petitions to Florida voters.</a></li>
+                  <li><a href="#" onclick="openFacebookModal(); return false;">Tell Florida Facebook Friends to sign the petition.</a></li>
                 </ul>
               </div>
 
@@ -216,8 +216,8 @@ require 'config.php';
                 <ul class="action-list">
                   <li><a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()">Print Petition, fill it out &amp; return it by mail.</a></li>
                   <li><a href="https://registertovoteflorida.gov" title="Register to Vote" target="_blank" onclick="return registerToVote();">Not Registered to Vote? Register Online</a>.</li>
-                  <li><a href="#" onclick="openFacebookModal(); return false;">Tell Florida Facebook Friends to sign the petition.</a></li>
                   <li><a href="#donate" onclick="openModal(); return false;">Send petitions to Florida voters.</a></li>
+                  <li><a href="#" onclick="openFacebookModal(); return false;">Tell Florida Facebook Friends to sign the petition.</a></li>
                 </ul>
               </div>
             </div>
@@ -278,8 +278,7 @@ require 'config.php';
     <section class="cta-section-3 alt-row">
       <div class="container">
         <div class="about-us">
-          <h2>About Us</h2>
-          <p>This platform, a project of <a href="http://staywoke.org" target="_blank">StayWoke</a>, was built in partnership with the <a href="https://floridarrc.com/" target="_blank">Florida Rights Restoration Coalition</a> and other local organizers in Florida to help collect the necessary petition signatures to put voter rights restoration on the 2018 Florida ballot. With assistance from <a href="https://www.rockthevote.org/" target="_blank">Rock The Vote</a>, <a href="https://www.aclu.org/" target="_blank">ACLU</a> and the mailing company <a href="https://lob.com/" target="_blank">Lob</a>, we’ve built a crowdsourced mailing system that will send petitions, including prepaid return postage, directly to thousands of registered voters in the state at minimal cost. Based on the results of this effort, we hope to expand this strategy to help put progressive policies on the ballot in other states as well.</p>
+          <p>This platform, a project of <a href="http://staywoke.org" target="_blank">StayWoke</a>, was built in partnership with the <a href="https://floridarrc.com/" target="_blank">Florida Rights Restoration Coalition</a> and other local organizers in Florida to help collect the necessary petition signatures to put voter rights restoration on the 2018 Florida ballot. With assistance from <a href="https://www.rockthevote.org/" target="_blank">Rock The Vote</a>, <a href="https://www.aclu.org/" target="_blank">ACLU</a>, we’ve built a crowdsourced mailing system that will send petitions, including prepaid return postage, directly to thousands of registered voters in the state at minimal cost. Based on the results of this effort, we hope to expand this strategy to help put progressive policies on the ballot in other states as well.</p>
         </div>
 
         <div class="our-partners">
@@ -335,11 +334,8 @@ require 'config.php';
 
     <div class="sticky-action-bar">
       <div class="row">
-        <div class="col-xs-6">
+        <div class="col-xs-12">
           <a href="#donate" onclick="openModal(); return false;">Send Petitions</a>
-        </div>
-        <div class="col-xs-6">
-          <a href="#" onclick="openFacebookModal(); return false;" class="last">Tell Your Friends</a>
         </div>
       </div>
     </div>
