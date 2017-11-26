@@ -64,59 +64,62 @@ if($ipnMessage->validate()) {
       $pdo->query("INSERT INTO `ipn_log` VALUES (NULL, '{$address_city}', '{$address_country_code}', '{$address_country}', '{$address_name}', '{$address_state}', '{$address_status}', '{$address_street}', '{$address_zip}', '{$custom}', '{$first_name}', '{$invoice}', '{$item_name}', '{$item_number}', '{$last_name}', '{$mc_currency}', '{$mc_fee}', '{$mc_gross}', '{$mc_handling}', '{$mc_shipping}', '{$notify_version}', '{$payer_email}', '{$payer_status}', '{$payment_date}', '{$payment_status}', '{$payment_type}', '{$receiver_email}', '{$receiver_id}', '{$test_ipn}', '{$txn_id}', '{$txn_type}', '{$verify_sign}')");
     } catch (Exception $e) {}
 
-    // Calculate Number of Mailers
-    $cost_per_mailer = floatval(COST_PER_MAILER);
-    $mc_currency = floatval($mc_currency);
-    $mc_fee = floatval($mc_fee);
-    $total = ($mc_currency - $mc_fee);
+    // Check if we should fire off Lob ABI Calls
+    if (LOB_ENABLED === TRUE) {
+      // Calculate Number of Mailers
+      $cost_per_mailer = floatval(COST_PER_MAILER);
+      $mc_currency = floatval($mc_currency);
+      $mc_fee = floatval($mc_fee);
+      $total = ($mc_currency - $mc_fee);
 
-    // "Flip a Coin" to see if we should round up or down
-    if (rand(0, 1) == 1) {
-      $petitions_to_mail = ceil($total / $cost_per_mailer);
-    } else {
-      $petitions_to_mail = floor($total / $cost_per_mailer);
-    }
+      // "Flip a Coin" to see if we should round up or down
+      if (rand(0, 1) == 1) {
+        $petitions_to_mail = ceil($total / $cost_per_mailer);
+      } else {
+        $petitions_to_mail = floor($total / $cost_per_mailer);
+      }
 
-    // Stop if we can't mail anything
-    if ($total <= 0 || $petitions_to_mail <= 0) {
-      exit;
-    }
+      // Stop if we can't mail anything
+      if ($total <= 0 || $petitions_to_mail <= 0) {
+        exit;
+      }
 
-    // Fire off letters
-    $api_key = (TEST_MODE) ? LOB_TEST_API_KEY : LOB_LIVE_API_KEY;
-    $lob = new \Lob\Lob($api_key);
+      // Fire off letters
+      $api_key = (TEST_MODE) ? LOB_TEST_API_KEY : LOB_LIVE_API_KEY;
+      $lob = new \Lob\Lob($api_key);
 
-    $from_address = $lob->addresses()->create(array(
-      'name'          => 'StayWoke',
-      'address_line1' => 'PO Box 540717',
-      'address_city'  => 'Orlando',
-      'address_state' => 'FL',
-      'address_zip'   => '32854-0717'
-    ));
+      $from_address = $lob->addresses()->create(array(
+        'name'          => 'StayWoke',
+        'address_line1' => 'PO Box 540717',
+        'address_city'  => 'Orlando',
+        'address_state' => 'FL',
+        'address_zip'   => '32854-0717'
+      ));
 
-    $stmt = $pdo->query("SELECT * FROM address_list WHERE `mailed` = 0 AND `processed` = 0 ORDER BY RAND() LIMIT {$petitions_to_mail}");
+      $stmt = $pdo->query("SELECT * FROM address_list WHERE `mailed` = 0 AND `processed` = 0 ORDER BY RAND() LIMIT {$petitions_to_mail}");
 
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
-    {
-      try {
-        $to_address = $lob->addresses()->create(array(
-          'name'          => $row['name'],
-          'address_line1' => $row['address'],
-          'address_city'  => $row['city'],
-          'address_state' => $row['state'],
-          'address_zip'   => $row['zipcode']
-        ));
+      while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+      {
+        try {
+          $to_address = $lob->addresses()->create(array(
+            'name'          => $row['name'],
+            'address_line1' => $row['address'],
+            'address_city'  => $row['city'],
+            'address_state' => $row['state'],
+            'address_zip'   => $row['zipcode']
+          ));
 
-        $letter = $lob->letters()->create(array(
-          'to'    => $to_address['id'],
-          'from'  => $from_address['id'],
-          'file'  => LOB_TEMPLATE_ID,
-          'color' => true
-        ));
+          $letter = $lob->letters()->create(array(
+            'to'    => $to_address['id'],
+            'from'  => $from_address['id'],
+            'file'  => LOB_TEMPLATE_ID,
+            'color' => true
+          ));
 
-        $pdo->query('UPDATE address_list SET `mailed` = 1, `processed` = 1, `status` = "Letter Sent", `process_date` = NOW() WHERE `id` = ' . $row['id']);
-      } catch (Exception $e) {
-        $pdo->query('UPDATE `address_list` SET `processed` = 1, `status` = "' . $e->getMessage() . '", `process_date` = NOW() WHERE `id` = ' . $row['id']);
+          $pdo->query('UPDATE address_list SET `mailed` = 1, `processed` = 1, `status` = "Letter Sent", `process_date` = NOW() WHERE `id` = ' . $row['id']);
+        } catch (Exception $e) {
+          $pdo->query('UPDATE `address_list` SET `processed` = 1, `status` = "' . $e->getMessage() . '", `process_date` = NOW() WHERE `id` = ' . $row['id']);
+        }
       }
     }
 

@@ -178,10 +178,40 @@ require 'config.php';
     <section class="map-widget">
       <div class="map-container">
         <h1>We can give 1.6 million people in Florida the ability to vote.</h1>
-        <h2><span class="signatures_needed"></span> more Floridians need to sign the <a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()">petition</a> in the next <span class="days_left"></span>.</h1>
-        <h3>&nbsp;</h3>
+        <h2><span class="signatures_needed"></span> more Floridians need to sign the <a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()">petition</a> in the next <span class="days_left"></span> days.</h1>
+
         <a href="#take-action" class="btn btn-dark btn-block help-button">Take Action</a>
         <div id="container"></div>
+
+        <div class="status">
+          <div class="row stats-headers">
+            <div class="col-xs-9">
+              <span class="signatures_collected"></span> <i>of <span class="signatures_required"></span></i>
+            </div>
+            <div class="col-xs-3 text-right">
+              <span class="percent_complete"></span>%
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="progress-bar">
+                <div class="progress"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row stats-subheaders">
+            <div class="col-xs-7">
+              <span class="petitions_mailed"></span>
+            </div>
+            <div class="col-xs-5 text-right">
+              <span class="days_left"></span> Days Left
+            </div>
+          </div>
+        </div>
+
+        <h3>&nbsp;</h3>
       </div>
     </section>
 
@@ -193,7 +223,7 @@ require 'config.php';
 
           <div class="col-md-8 col-sm-12 text-left signup-text">
             <h2>We Need Your Help</h2>
-            <p>We can make it possible for 1.6 million more Floridians to vote. We need <span class="signatures_needed"></span> more Florida registered voters to sign this petition by February 1st, 2018 to put this voting rights restoration initiative on the ballot.</p>
+            <p>We can make it possible for 1.6 million more Floridians to vote. We need <span class="signatures_needed"></span> more Florida registered voters to sign <a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()">this petition</a> by February 1st, 2018 to put the voting rights restoration initiative on the ballot.</p>
 
             <h4>
               <a name="take-action"></a>
@@ -218,6 +248,8 @@ require 'config.php';
                   <li><a href="https://registertovoteflorida.gov" title="Register to Vote" target="_blank" onclick="return registerToVote();">Not Registered to Vote? Register Online</a>.</li>
                   <li><a href="#donate" onclick="openModal(); return false;">Send petitions to Florida voters.</a></li>
                   <li><a href="#" onclick="openFacebookModal(); return false;">Tell Florida Facebook Friends to sign the petition.</a></li>
+                  <li><a href="https://actionnetwork.org/event_campaigns/voting-restoration-amendment-petition-collection">Attend an event</a></li>
+                  <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdyZSdRDxYncEm5vSnHoNHoqxv3TgIQ8rfxuMAiZxRI6sN13g/viewform">Host an event</a></li>
                 </ul>
               </div>
             </div>
@@ -283,11 +315,7 @@ require 'config.php';
 
         <div class="our-partners">
           <h3>Our Partners</h3>
-          <div class="col-md-3">
-            <a href="https://www.aclu.org" target="_blank">
-              <img src="assets/images/aclu.png" />
-            </a>
-          </div>
+
           <div class="col-md-3">
             <a href="https://floridarrc.com" target="_blank">
               <img src="assets/images/frrc.png" />
@@ -301,6 +329,11 @@ require 'config.php';
           <div class="col-md-3">
             <a href="https://www.floridiansforafairdemocracy.com" target="_blank">
               <img src="assets/images/second-chances.png" />
+            </a>
+          </div>
+          <div class="col-md-3">
+            <a href="https://www.aclu.org" target="_blank">
+              <img src="assets/images/aclu.png" />
             </a>
           </div>
         </div>

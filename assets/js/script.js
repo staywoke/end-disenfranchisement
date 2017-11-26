@@ -171,24 +171,34 @@ var renderMap = function () {
     signaturesNeeded = 0;
   }
 
-  $('.map-widget span.signatures_needed').text(numberWithCommas(signaturesNeeded));
+  if (percentCollected > 100) {
+    percentCollected = 100;
+  }
+
   $('.signup-text span.signatures_needed').text(numberWithCommas(signaturesNeeded));
-  $('.map-widget span.days_left').text(daysLeft + ' days');
+
+  $('.map-widget span.signatures_needed').text(numberWithCommas(signaturesNeeded));
+  $('.map-widget span.signatures_collected').text(numberWithCommas(mapData.signatures.summary.ballot_total));
+  $('.map-widget span.signatures_required').text(numberWithCommas(mapData.signatures.summary.ballot_needed));
+  $('.map-widget span.days_left').text(daysLeft);
+  $('.map-widget span.percent_complete').text(percentCollected);
+  $('.map-widget .progress').css({ width: percentCollected + '%' });
+
   $('.map-container').css({ 'opacity': 1 });
 
   trackEvent('Map', 'Data Loaded', 'Percent Collected', percentCollected);
   trackEvent('Map', 'Data Loaded', 'Days Left', daysLeft);
 
-  var petitions = (mapData.mailings.total === 1) ? 'petition' : 'petitions';
-  var collectedText = '<b class="number">' + Math.ceil(percentCollected) + '%</b> of petitions collected.';
-  var petitionText = (mapData.mailings.total > 0) ? '<b class="number">' + mapData.mailings.total + '</b> ' + petitions + ' mailed.' : '';
+  var petitions = (mapData.mailings.total === 1) ? 'Petition' : 'Petitions';
+  var petitionText = (mapData.mailings.total > 0) ? '<b class="number">' + numberWithCommas(mapData.mailings.total) + '</b> ' + petitions + ' Mailed' : '';
 
-  $('.map-container h3').html(collectedText + ' ' + petitionText);
+  $('.map-container .petitions_mailed').html(petitionText);
 
   // Create the chart
   Highcharts.mapChart('container', {
     chart: {
-      backgroundColor: 'transparent'
+      backgroundColor: 'transparent',
+      margin: 0
     },
     title: {
       text: '',
@@ -196,12 +206,11 @@ var renderMap = function () {
         display: 'none'
       }
     },
+    legend: {
+      enabled: false
+    },
     mapNavigation: {
-      enabled: true,
-      enableMouseWheelZoom: false,
-      buttonOptions: {
-        verticalAlign: 'bottom'
-      }
+      enabled: false
     },
     colorAxis: {
       min: 0,

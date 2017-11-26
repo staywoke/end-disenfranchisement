@@ -9,7 +9,7 @@ require('../config.php');
 function get_json() {
   $file = '../cache/cache.json';
   $current_time = time();
-  $expire_time = 86400;
+  $expire_time = CACHE_EXPIRE;
 
   /**
    * Check if we have a cached version of the file and return it
@@ -51,7 +51,7 @@ function get_mailings_json() {
 function get_html() {
   $file = '../cache/cache.html';
   $current_time = time();
-  $expire_time = 86400;
+  $expire_time = CACHE_EXPIRE;
 
   /**
    * Check if we have a cached version of the file and return it
