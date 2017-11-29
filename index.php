@@ -217,7 +217,7 @@ require 'config.php';
 
                 <ul class="action-list">
                   <li><a href="#donate" onclick="openModal(); return false;"><b>Send petitions</b> to Florida voters.</a></li>
-                  <li>Share on Social MediaShare the Petition with friends via
+                  <li>Share the Petition with friends via
                     <a href="https://www.facebook.com/sharer/sharer.php?u=<?= rawurlencode(BASE_URL) ?>&quote=<?= rawurlencode(SHARE_MESSAGE) ?>" title="Share on Facebook" target="_blank"><b>Facebook</b></a>,
                     <a href="https://twitter.com/intent/tweet?source=<?= rawurlencode(BASE_URL) ?>&text=<?= rawurlencode(SHARE_MESSAGE) ?>" target="_blank" title="Tweet"><b>Twitter</b></a> or
                     <a href="mailto:?subject=We%20can%20make%20it%20possible%20for%201.6%20million%20more%20Floridians%20to%20vote&body=<?= rawurlencode(SHARE_MESSAGE) ?>" title="Send email"><b>Email</b></a>
@@ -232,7 +232,7 @@ require 'config.php';
                   <li><a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()"><b>Print Petition</b>, fill it out &amp; return it by mail.</a></li>
                   <li><a href="https://registertovoteflorida.gov" title="Register to Vote" target="_blank" onclick="return registerToVote();"><b>Not Registered to Vote?</b> Register Online</a>.</li>
                   <li><a href="#donate" onclick="openModal(); return false;"><b>Send petitions</b> to Florida voters.</a></li>
-                  <li>Share on Social MediaShare the Petition with friends via
+                  <li>Share the Petition with friends via
                     <a href="https://www.facebook.com/sharer/sharer.php?u=<?= rawurlencode(BASE_URL) ?>&quote=<?= rawurlencode(SHARE_MESSAGE) ?>" title="Share on Facebook" target="_blank"><b>Facebook</b></a>,
                     <a href="https://twitter.com/intent/tweet?source=<?= rawurlencode(BASE_URL) ?>&text=<?= rawurlencode(SHARE_MESSAGE) ?>" target="_blank" title="Tweet"><b>Twitter</b></a> or
                     <a href="mailto:?subject=We%20can%20make%20it%20possible%20for%201.6%20million%20more%20Floridians%20to%20vote&body=<?= rawurlencode(SHARE_MESSAGE) ?>" title="Send email"><b>Email</b></a>
