@@ -228,7 +228,7 @@ require 'config.php';
 
           <div class="col-xs-12 text-left signup-text">
             <h2>We Need Your Help</h2>
-            <p>We can make it possible for 1.6 million more Floridians to vote. We need <span class="signatures_needed"></span> more Florida registered voters to sign <a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()">this petition</a> by February 1st, 2018 to put the voting rights restoration initiative on the ballot.</p>
+            <p>1 in 10 Florida adults is banned from voting because of a past conviction. Florida is one of only three states that permanently takes away their vote. We need <span class="signatures_needed"></span> more Florida registered voters to sign <a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()">this petition</a> by February 1st, 2018 to put an initiative on the ballot that would restore their ability to vote.</p>
 
             <h4>
               <a name="take-action"></a>
