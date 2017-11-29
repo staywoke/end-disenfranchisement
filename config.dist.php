@@ -5,7 +5,7 @@ define('BASE_URL', 'https://florida.ourstates.org');
 define('ENABLE_ANALYTICS', true);
 define('CACHE_EXPIRE', 86400);
 
-define('SHARE_MESSAGE', "We can make it possible for 1.6 million more Floridians to vote.\n\nHere's how: https://florida.ourstates.org");
+define('SHARE_MESSAGE', "1.6 million people are banned from voting in Florida.\n\nHere's how you can help: https://florida.ourstates.org");
 
 define('DB_HOST', '127.0.0.1');
 define('DB_USER', 'replace-me');
