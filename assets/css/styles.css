@@ -112,6 +112,18 @@ a {
   display: inline-block;
 }
 
+.blue-dot {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid #0088df;
+  background: rgba(0, 136, 223, .35);
+  margin-right: 6px;
+  position: relative;
+  top: 2px;
+}
+
 #btn, .btn {
   text-align: center;
   -webkit-transition: 0.3s 0.2s ease-out;
@@ -329,6 +341,15 @@ nav ul, nav li {
   text-transform: uppercase;
 }
 
+.map-container h1 b {
+  color: #FFF;
+  background: #27bb47;
+  padding: 5px 10px;
+  margin: 0 3px;
+  display: inline-block;
+  white-space: nowrap;
+}
+
 .map-container h2 {
   margin: 0 auto;
   width: 80%;
@@ -465,7 +486,7 @@ ul.share-buttons .sr-only {
   }
 
   .cta-section-3 .signup-text {
-    width: 90%;
+    padding: 0 30px;
     margin: 0 auto;
   }
 
@@ -481,7 +502,7 @@ ul.share-buttons .sr-only {
 }
 
 #container {
-    height: 55vh;
+    height: calc(100vh - 420px);
     min-width: 300px;
     max-width: 800px;
     margin: 0 auto;
@@ -557,18 +578,21 @@ button.sign-up {
   margin-top: 46px;
   margin-bottom: 40px;
 }
-.help-button {
-  display: block;
+.action-bar {
+  max-width: 360px;
   margin: 0 auto;
-  width: 160px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+.help-button {
+  margin: 0 auto;
   color: #fff;
   background: #0088df;
   line-height: 18px;
-  font-size: 14px;
+  font-size: 12px;
   letter-spacing: 1px;
   font-weight: 300;
   text-transform: uppercase;
-  margin-bottom: 30px;
 }
 .help-button:focus, .help-button:hover, .help-button:active {
   color: #fff;
@@ -583,6 +607,12 @@ b.mb {
 
 .action-list {
  margin-bottom: 40px;
+}
+
+.action-list b {
+  text-transform: none;
+  color: #000;
+  font-weight: 400;
 }
 
 .modal-window {
@@ -791,39 +821,6 @@ h3.modal-title a:hover, h3.modal-title a:focus {
   animation-fill-mode:forwards;
 }
 
-.sticky-action-bar {
-  background: #222;
-  position: fixed;
-  bottom: 0;
-  left: calc(50vw - 90px);
-  width: 180px;
-  height: 50px;
-  line-height: 50px;
-}
-
-.sticky-action-bar .row {
-  margin: 0;
-}
-
-.sticky-action-bar .col-xs-12 {
-  margin: 0;
-  padding: 0;
-}
-
-.sticky-action-bar a {
-  color: #FFF;
-  font-size: 12px;
-  text-align: center;
-  display: block;
-  line-height: 50px;
-  text-transform: uppercase;
-}
-
-.sticky-action-bar a:hover, .sticky-action-bar a:focus {
-  background: #0388df;
-  text-decoration: none;
-}
-
 span.error-message {
   color: #CC0000;
   font-weight: 400;
@@ -957,15 +954,6 @@ textarea:focus {
 @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 
 @media (max-width: 768px) {
-  .sticky-action-bar {
-    background: #222;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 50px;
-    line-height: 50px;
-  }
   .top-donation-btn-container {
     padding: 0;
     top: -1px;
@@ -1019,9 +1007,6 @@ textarea:focus {
     background-color: #f6f5f6;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   }
-  #container {
-      height: calc(100vh - 420px);
-  }
 }
 
 @media (max-width: 414px) {
@@ -1042,5 +1027,10 @@ textarea:focus {
   }
   textarea {
     min-height: 280px;
+  }
+  .help-button {
+    margin: 0 auto;
+    font-size: 11px;
+    padding: 3px 6px;
   }
 }
