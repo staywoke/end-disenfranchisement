@@ -35,31 +35,7 @@ require 'config.php';
 
   <body>
 
-    <!-- Start Facebook Modal -->
-    <div class="modal-window" id="facebook-modal">
-      <div class="modal-wrapper">
-        <div class="container-fluid selection-group">
-          <div class="row">
-            <h3 class="modal-title">Share On Facebook</h3>
-            <a href="#" onclick="closeFacebookModal(); return false;" class="close-modal">
-              <i class="fa fa-times"></i>
-            </a>
-          </div>
-
-          <p class="instructions">
-            Copy the text below to send to your Facebook friends in Florida and ask them to sign this petition.
-          </p>
-
-          <textarea>Hey, I’m working to help collect petition signatures for a ballot initiative in Florida that would restore voting rights to 1.6 million people in the state. Help us put this on the Florida ballot by printing this petition, filling it out, and returning it to Floridians for Fair Democracy (the address is on the petition): https://florida.ourstates.org/pdf/petition.pdf</textarea>
-
-          <a href="https://www.facebook.com" target="_blank" class="btn btn-block make-donation">Get Started</a>
-
-        </div>
-      </div>
-      <div class="modal-overlay" onclick="closeFacebookModal()"></div>
-    </div>
-
-    <!-- Start Donate Modal -->
+    <!-- MODAL -->
     <div class="modal-window" id="donate-modal">
       <div class="modal-wrapper">
         <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
@@ -156,12 +132,8 @@ require 'config.php';
                   <a href="#donate" onclick="openModal(); return false;">DONATE PETITIONS</a>
                 </li>
                 <li>
-                  <a href="#share" onclick="openFacebookModal(); return false;">SHARE</a>
-                </li>
-                <li>
                   <a href="#about-us" title="">ABOUT US</a>
                 </li>
-
               </ul>
             </div>
           </div>
@@ -177,12 +149,16 @@ require 'config.php';
         <h1>We can give <b>1.6 million people</b> in Florida the ability to vote.</h1>
         <h2><span class="signatures_needed"></span> more Floridians need to sign the <a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()">petition</a> in the next <span class="days_left"></span> days.</h1>
 
-        <div class="action-bar">
-          <a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()" class="btn btn-dark help-button">Sign Petition</a>
+        <div class="row action-bar">
+          <div class="col-xs-6">
+            <a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()" class="btn btn-dark btn-block help-button">Sign Petition</a>
+          </div>
+          <div class="col-xs-6">
+            <a href="#donate" onclick="openModal(); return false;" class="btn btn-dark btn-block help-button">Donate Petitions</a>
+          </div>
 
-          <a href="#donate" onclick="openModal(); return false;" class="btn btn-dark help-button">Donate Petitions</a>
 
-          <a href="#share" onclick="openFacebookModal(); return false;" class="btn btn-dark help-button">Share</a>
+
         </div>
 
 
@@ -241,7 +217,11 @@ require 'config.php';
 
                 <ul class="action-list">
                   <li><a href="#donate" onclick="openModal(); return false;"><b>Send petitions</b> to Florida voters.</a></li>
-                  <li><a href="#" onclick="openFacebookModal(); return false;"><b>Share on Social Media</b> to sign the petition.</a></li>
+                  <li>Share on Social MediaShare the Petition with friends via
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?= rawurlencode(BASE_URL) ?>&quote=<?= rawurlencode(SHARE_MESSAGE) ?>" title="Share on Facebook" target="_blank"><b>Facebook</b></a>,
+                    <a href="https://twitter.com/intent/tweet?source=<?= rawurlencode(BASE_URL) ?>&text=<?= rawurlencode(SHARE_MESSAGE) ?>" target="_blank" title="Tweet"><b>Twitter</b></a> or
+                    <a href="mailto:?subject=We%20can%20make%20it%20possible%20for%201.6%20million%20more%20Floridians%20to%20vote&body=<?= rawurlencode(SHARE_MESSAGE) ?>" title="Send email"><b>Email</b></a>
+                  </li>
                 </ul>
               </div>
 
@@ -252,7 +232,11 @@ require 'config.php';
                   <li><a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()"><b>Print Petition</b>, fill it out &amp; return it by mail.</a></li>
                   <li><a href="https://registertovoteflorida.gov" title="Register to Vote" target="_blank" onclick="return registerToVote();"><b>Not Registered to Vote?</b> Register Online</a>.</li>
                   <li><a href="#donate" onclick="openModal(); return false;"><b>Send petitions</b> to Florida voters.</a></li>
-                  <li><a href="#" onclick="openFacebookModal(); return false;"><b>Share on Social Media</b> to sign the petition.</a></li>
+                  <li>Share on Social MediaShare the Petition with friends via
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?= rawurlencode(BASE_URL) ?>&quote=<?= rawurlencode(SHARE_MESSAGE) ?>" title="Share on Facebook" target="_blank"><b>Facebook</b></a>,
+                    <a href="https://twitter.com/intent/tweet?source=<?= rawurlencode(BASE_URL) ?>&text=<?= rawurlencode(SHARE_MESSAGE) ?>" target="_blank" title="Tweet"><b>Twitter</b></a> or
+                    <a href="mailto:?subject=We%20can%20make%20it%20possible%20for%201.6%20million%20more%20Floridians%20to%20vote&body=<?= rawurlencode(SHARE_MESSAGE) ?>" title="Send email"><b>Email</b></a>
+                  </li>
                   <li><a href="https://actionnetwork.org/event_campaigns/voting-restoration-amendment-petition-collection"><b>Attend</b> an event</a></li>
                   <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdyZSdRDxYncEm5vSnHoNHoqxv3TgIQ8rfxuMAiZxRI6sN13g/viewform"><b>Host</b> an event</a></li>
                 </ul>
@@ -303,22 +287,22 @@ require 'config.php';
     </section>
 
     <!-- FOOTER -->
-    <section>
+    <section class="fixed-footer">
       <div class="row social-share">
         <div class="col-sm-12">
           <ul class="share-buttons">
             <li>
-              <a href="https://www.facebook.com/sharer/sharer.php?u=<?= urlencode(BASE_URL) ?>&t=We%20can%20make%20it%20possible%20for%201.6%20million%20more%20Floridians%20to%20vote%20during%20the%20next%20Presidential%20election." title="Share on Facebook" target="_blank">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=<?= rawurlencode(BASE_URL) ?>&quote=<?= rawurlencode(SHARE_MESSAGE) ?>" title="Share on Facebook" target="_blank">
                 <i class="fa fa-facebook-square"></i>
               </a>
             </li>
             <li>
-              <a href="https://twitter.com/intent/tweet?source=<?= urlencode(BASE_URL) ?>&text=We%20can%20make%20it%20possible%20for%201.6%20million%20more%20Floridians%20to%20vote%20during%20the%20next%20Presidential%20election.:%20<?= urlencode(BASE_URL) ?>" target="_blank" title="Tweet">
+              <a href="https://twitter.com/intent/tweet?source=<?= rawurlencode(BASE_URL) ?>&text=<?= rawurlencode(SHARE_MESSAGE) ?>" target="_blank" title="Tweet">
                 <i class="fa fa-twitter-square"></i>
               </a>
             </li>
             <li>
-              <a href="mailto:?subject=We%20can%20make%20it%20possible%20for%201.6%20million%20more%20Floridians%20to%20vote%20during%20the%20next%20Presidential%20election.&body=We%20need%20your%20help.%20We%20can%20make%20it%20possible%20for%201.6%20million%20more%20Floridians%20-%20including%201%20in%204%20black%20Floridians%20-%20to%20vote%20during%20the%20next%20Presidential%20election.:%20<?= urlencode(BASE_URL) ?>" target="_blank" title="Send email">
+              <a href="mailto:?subject=We%20can%20make%20it%20possible%20for%201.6%20million%20more%20Floridians%20to%20vote&body=<?= rawurlencode(SHARE_MESSAGE) ?>" title="Send email">
                 <i class="fa fa-envelope-square"></i>
               </a>
             </li>

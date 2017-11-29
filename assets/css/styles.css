@@ -342,11 +342,7 @@ nav ul, nav li {
 }
 
 .map-container h1 b {
-  color: #FFF;
-  background: #27bb47;
-  padding: 5px 10px;
-  margin: 0 3px;
-  display: inline-block;
+  font-weight: 500;
   white-space: nowrap;
 }
 
@@ -583,6 +579,9 @@ button.sign-up {
   margin: 0 auto;
   margin-bottom: 30px;
   text-align: center;
+}
+.action-bar .col-xs-6 {
+  padding: 0 5px;
 }
 .help-button {
   margin: 0 auto;
@@ -831,34 +830,6 @@ span.success-message {
   font-weight: 400;
 }
 
-p.instructions {
-  font-weight: 300;
-  line-height: 18px;
-  color: #000;
-}
-
-textarea {
-  font-weight: 300;
-  line-height: 18px;
-  min-height: 145px;
-  width: 100%;
-  padding: 14px;
-  background: rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  border-radius: 8px;
-  color: #000;
-  -webkit-overflow-scrolling: touch;
-  resize: none;
-  -webkit-box-shadow: inset 0 4px 4px -4px rgba(0,0,0,0.25);
-  -moz-box-shadow: inset 0 4px 4px -4px rgba(0,0,0,0.25);
-  box-shadow: inset 0 4px 4px -4px rgba(0,0,0,0.25);
-}
-
-textarea:focus {
-  outline: none;
-  border: 1px solid rgba(0, 0, 0, 0.25);
-}
-
 .live-in-florida a {
   text-align: center;
   display: block;
@@ -903,7 +874,7 @@ textarea:focus {
 .status {
   max-width: 500px;
   margin: 0 auto;
-  padding: 15px 25px;
+  padding: 0 25px 15px 25px;
 }
 
 .progress-bar {
@@ -1006,6 +977,12 @@ textarea:focus {
     position: fixed;
     background-color: #f6f5f6;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  .fixed-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
   }
 }
 

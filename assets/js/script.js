@@ -240,16 +240,6 @@ var closeModal = function () {
   trackEvent('Navigation', 'Donation Modal', 'Close');
 };
 
-var openFacebookModal = function () {
-  $('#facebook-modal').fadeIn();
-  trackEvent('Navigation', 'Facebook Modal', 'Open');
-};
-
-var closeFacebookModal = function () {
-  $('#facebook-modal').fadeOut();
-  trackEvent('Navigation', 'Facebook Modal', 'Close');
-};
-
 var debounce = function(func, wait, immediate) {
 	var timeout;
 	return function() {

@@ -1,9 +1,11 @@
 <?php
-define('VERSION_NUMBER', '0.9.7');
+define('VERSION_NUMBER', '0.9.8');
 define('TEST_MODE', TRUE);
 define('BASE_URL', 'https://florida.ourstates.org');
 define('ENABLE_ANALYTICS', true);
 define('CACHE_EXPIRE', 86400);
+
+define('SHARE_MESSAGE', "We can make it possible for 1.6 million more Floridians to vote.\n\nHere's how: https://florida.ourstates.org");
 
 define('DB_HOST', '127.0.0.1');
 define('DB_USER', 'replace-me');
