@@ -865,6 +865,7 @@ span.success-message {
 
 .our-partners img {
   max-width: 100%;
+  max-height: 100px;
 }
 
 .alt-row {
@@ -919,12 +920,26 @@ span.success-message {
   white-space: nowrap;
 }
 
+.fixed-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.our-partners {
+  padding-bottom: 40px;
+}
+
 /* Keyframes for the fade-in */
 @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 
 @media (max-width: 768px) {
+  .cta-section-3 {
+    padding: 20px 10px;
+  }
   .top-donation-btn-container {
     padding: 0;
     top: -1px;
@@ -978,11 +993,11 @@ span.success-message {
     background-color: #f6f5f6;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   }
-  .fixed-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
+  .action-list {
+    margin-bottom: 20px;
+  }
+  .our-partners img {
+    max-height: 60px;
   }
 }
 
@@ -1011,3 +1026,15 @@ span.success-message {
     padding: 3px 6px;
   }
 }
+
+ @media (max-width: 1024px) and (orientation:landscape) {
+  .navbar-default {
+    padding: 0;
+  }
+
+  #container {
+    height: 100vh;
+    min-height: 175px;
+    max-height: 300px;
+  }
+ }
