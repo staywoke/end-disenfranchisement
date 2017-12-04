@@ -104,7 +104,7 @@ require 'config.php';
               <div class="col-sm-6">
                 <div class="input-group mb-2 mb-sm-0">
                   <div class="input-group-addon">$</div>
-                  <input type="number" min="5" step="5" onkeypress="return event.charCode >= 48" class="form-control" id="amount" name="amount" placeholder="Enter USD Amount" required="required" autocomplete="false">
+                  <input type="number" onkeypress="return event.charCode >= 48" class="form-control" id="amount" name="amount" placeholder="Enter USD Amount" required="required" autocomplete="false">
                 </div>
               </div>
             </div>

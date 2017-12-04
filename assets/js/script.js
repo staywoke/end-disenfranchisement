@@ -78,6 +78,17 @@ function numberWithCommas(x) {
 
   $('#amount').on('change', function () {
     var price = $(this).val();
+
+    if (parseInt(price) < 0) {
+      price = Math.abs(price);
+      $(this).val(price);
+    }
+
+    if (parseInt(price) === 0) {
+      price = 1;
+      $(this).val(price);
+    }
+
     updateDonateText(price);
 
     trackEvent('Form', 'Data Entry', 'Donation Changed', price);
@@ -85,6 +96,17 @@ function numberWithCommas(x) {
 
   $('#amount').on('keyup', function () {
     var price = $(this).val();
+
+    if (parseInt(price) < 0) {
+      price = Math.abs(price);
+      $(this).val(price);
+    }
+
+    if (parseInt(price) === 0) {
+      price = 1;
+      $(this).val(price);
+    }
+
     updateDonateText(price);
 
     trackEvent('Form', 'Data Entry', 'Donation Changed', price);
