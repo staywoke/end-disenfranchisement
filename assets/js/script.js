@@ -175,6 +175,10 @@ var renderMap = function () {
 
   $('.map-container .petitions_mailed').html(petitionText);
 
+  if (mapData.mailings.total === 0) {
+    $('.blue-dot').hide();
+  }
+
   // Create the chart
   Highcharts.mapChart('container', {
     chart: {
