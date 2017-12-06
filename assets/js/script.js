@@ -46,8 +46,7 @@ function numberWithCommas(x) {
 
   function updateDonateText(price) {
     if (price && parseInt(price) > 0) {
-      $('#donation-text').html("Donate <b>$" + numberWithCommas(price) + "</b> and we'll mail <b>" + Math.floor(price / COST_PER_MAILER) + "</b> petitions to FL registered voters.");
-
+      $('#donation-text').html("Donate <b>$" + numberWithCommas(price) + "</b> and we'll mail <b>" + Math.floor(price / COST_PER_MAILER) + "</b> petitions with prepaid postage to FL voters.");
       $('.selection-group button.donation-choice').each(function(){
         var selectedPrice = $(this).data('price');
         if (parseInt(price) === parseInt(selectedPrice)) {

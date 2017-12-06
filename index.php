@@ -110,7 +110,7 @@ require 'config.php';
             </div>
             <div class="row">
               <div class="col-sm-9" id="donation-text">
-                For every <b>$1</b> you donate, we’ll mail <b>4</b> petitions to FL registered voters.
+                For every <b>$1</b>, we’ll mail <b>2</b> petitions with prepaid postage to FL voters.
               </div>
               <div class="col-sm-3">
                 <button type="submit" class="btn btn-block make-donation">Send</button>

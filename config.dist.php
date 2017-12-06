@@ -1,5 +1,5 @@
 <?php
-define('VERSION_NUMBER', '1.0.1');
+define('VERSION_NUMBER', '1.0.2');
 define('TEST_MODE', TRUE);
 define('BASE_URL', 'https://florida.ourstates.org');
 define('ENABLE_ANALYTICS', true);
