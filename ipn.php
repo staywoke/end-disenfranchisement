@@ -70,7 +70,7 @@ if($ipnMessage->validate()) {
     $mc_currency = floatval($mc_currency);
     $mc_fee = floatval($mc_fee);
     // $total = ($mc_currency - $mc_fee); -- was instructed to diregard paypal fees
-    $total = $mc_currency;
+    $total = floatval($mc_gross);
 
     // "Flip a Coin" to see if we should round up or down
     if (rand(0, 1) == 1) {
