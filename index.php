@@ -49,7 +49,7 @@ require 'config.php';
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/css/styles.css?v=<?= VERSION_NUMBER ?>" />
 
-    <link rel="shortcut icon" href="assets/images/favicon.png" />
+    <link rel="shortcut icon" href="assets/images/favicon.ico" />
   </head>
 
   <body>
@@ -104,7 +104,7 @@ require 'config.php';
               <div class="col-sm-6">
                 <div class="input-group mb-2 mb-sm-0">
                   <div class="input-group-addon">$</div>
-                  <input type="number" onkeypress="return event.charCode >= 48" class="form-control" id="amount" name="amount" placeholder="Enter USD Amount" required="required" autocomplete="false">
+                  <input type="number" onkeypress="return (event.charCode === 13 || (event.charCode >= 48 && event.charCode <= 57))" class="form-control" id="amount" name="amount" placeholder="Enter USD Amount" required="required" autocomplete="false">
                 </div>
               </div>
             </div>
@@ -223,7 +223,7 @@ require 'config.php';
 
           <div class="col-xs-12 text-left signup-text">
             <h2>We Need Your Help</h2>
-            <p>1 in 10 Florida adults is banned from voting because of a past conviction. Florida is one of only three states that permanently takes away their vote. We need <span class="signatures_needed"></span> more Florida registered voters to sign <a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()">this petition</a> by February 1st, 2018 to put an initiative on the ballot that would restore their ability to vote.</p>
+            <p>1 in 10 Florida adults is banned from voting because of a past conviction. Florida is one of only four states that permanently takes away their vote. We need <span class="signatures_needed"></span> more Florida registered voters to sign <a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()">this petition</a> by February 1st, 2018 to put an initiative on the ballot that would restore their ability to vote.</p>
 
             <h4>
               <a name="take-action"></a>
@@ -235,7 +235,7 @@ require 'config.php';
                 <b class="mb">I Don't Live in Florida:</b>
 
                 <ul class="action-list">
-                  <li><a href="#donate" onclick="openModal(); return false;"><b>Send petitions</b> to Florida voters.</a></li>
+                  <li><a href="#donate" onclick="openModal(); return false;"><b>Send petitions</b> to Florida voters (including prepaid postage).</a></li>
                   <li>Share the Petition with friends via
                     <a href="https://www.facebook.com/sharer/sharer.php?u=<?= rawurlencode(BASE_URL) ?>&quote=<?= rawurlencode(SHARE_MESSAGE) ?>" title="Share on Facebook" target="_blank"><b>Facebook</b></a>,
                     <a href="https://twitter.com/intent/tweet?source=<?= rawurlencode(BASE_URL) ?>&text=<?= rawurlencode(SHARE_MESSAGE) ?>" target="_blank" title="Tweet"><b>Twitter</b></a> or
@@ -250,7 +250,7 @@ require 'config.php';
                 <ul class="action-list">
                   <li><a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()"><b>Print Petition</b>, fill it out &amp; return it by mail.</a></li>
                   <li><a href="https://registertovoteflorida.gov" title="Register to Vote" target="_blank" onclick="return registerToVote();"><b>Not Registered to Vote?</b> Register Online</a>.</li>
-                  <li><a href="#donate" onclick="openModal(); return false;"><b>Send petitions</b> to Florida voters.</a></li>
+                  <li><a href="#donate" onclick="openModal(); return false;"><b>Send petitions</b> to Florida voters (including prepaid postage).</a></li>
                   <li>Share the Petition with friends via
                     <a href="https://www.facebook.com/sharer/sharer.php?u=<?= rawurlencode(BASE_URL) ?>&quote=<?= rawurlencode(SHARE_MESSAGE) ?>" title="Share on Facebook" target="_blank"><b>Facebook</b></a>,
                     <a href="https://twitter.com/intent/tweet?source=<?= rawurlencode(BASE_URL) ?>&text=<?= rawurlencode(SHARE_MESSAGE) ?>" target="_blank" title="Tweet"><b>Twitter</b></a> or
@@ -274,8 +274,8 @@ require 'config.php';
       <div class="container">
         <div class="about-us">
           <p>
-            This platform, a project of <a href="http://staywoke.org" target="_blank">StayWoke</a>, was built in partnership with the <a href="https://floridarrc.com/" target="_blank">Florida Rights Restoration Coalition</a>, <a href="https://www.rockthevote.org/" target="_blank">Rock The Vote</a>, and the <a href="https://www.aclu.org/" target="_blank">ACLU</a> to collect the petition signatures to put voter rights restoration on the 2018 Florida ballot. Together, we’ve built a crowdsourced system that mails petitions, including prepaid return postage, directly to thousands of registered voters in the state at minimal cost.
-          </p>
+            This platform, a project of <a href="http://staywoke.org" target="_blank">StayWoke</a>, was built in partnership with the <a href="https://floridarrc.com/" target="_blank">Florida Rights Restoration Coalition</a> to collect the petition signatures to put voter rights restoration on the 2018 Florida ballot. With assistance from <a href="https://www.rockthevote.org/" target="_blank">Rock The Vote</a>, we’ve built a crowdsourced system that mails petitions, including prepaid return postage, directly to thousands of registered voters in the state at minimal cost.
+        </p>
         </div>
 
         <div class="our-partners">
@@ -289,16 +289,6 @@ require 'config.php';
           <div class="col-md-3 col-xs-6">
             <a href="https://www.rockthevote.org" target="_blank">
               <img src="assets/images/rtv.png" />
-            </a>
-          </div>
-          <div class="col-md-3 col-xs-6">
-            <a href="https://www.floridiansforafairdemocracy.com" target="_blank">
-              <img src="assets/images/second-chances.png" />
-            </a>
-          </div>
-          <div class="col-md-3 col-xs-6">
-            <a href="https://www.aclu.org" target="_blank">
-              <img src="assets/images/aclu.png" />
             </a>
           </div>
 
@@ -338,15 +328,13 @@ require 'config.php';
     <script src="assets/js/plugins.js?v=<?= VERSION_NUMBER ?>"></script>
     <script src="assets/js/script.js?v=<?= VERSION_NUMBER ?>"></script>
   <?php if (ENABLE_ANALYTICS): ?>
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-109823518-1']);
-      _gaq.push(['_trackPageview']);
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109823518-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-109823518-1');
     </script>
   <?php endif; ?>
 

@@ -1,6 +1,10 @@
 function trackEvent(category, action, label, value){
-  if(typeof ga !== 'undefined'){
-    ga('send', 'event', category, action, label, value);
+  if(typeof gtag !== 'undefined'){
+    gtag('event', action, {
+      'event_category': category,
+      'event_label': label,
+      'value': value
+    });
   }
 }
 
@@ -76,7 +80,9 @@ function numberWithCommas(x) {
     trackEvent('Form', 'Data Entry', 'Donation Selected', price);
   });
 
-  $('#amount').on('change', function () {
+  var $amount = $('#amount');
+
+  $amount.on('change', function () {
     var price = $(this).val();
 
     if (parseInt(price) < 0) {
@@ -94,7 +100,7 @@ function numberWithCommas(x) {
     trackEvent('Form', 'Data Entry', 'Donation Changed', price);
   });
 
-  $('#amount').on('keyup', function () {
+  $amount.on('keyup', function () {
     var price = $(this).val();
 
     if (parseInt(price) < 0) {
@@ -110,6 +116,14 @@ function numberWithCommas(x) {
     updateDonateText(price);
 
     trackEvent('Form', 'Data Entry', 'Donation Changed', price);
+  });
+
+  $amount.on('focus', function () {
+    $('.donation-choice').attr('disabled', 'disabled');
+  });
+
+  $amount.on('blur', function () {
+    $('.donation-choice').removeAttr('disabled');
   });
 })();
 

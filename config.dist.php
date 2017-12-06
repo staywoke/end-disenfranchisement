@@ -1,5 +1,5 @@
 <?php
-define('VERSION_NUMBER', '1.0.0');
+define('VERSION_NUMBER', '1.0.1');
 define('TEST_MODE', TRUE);
 define('BASE_URL', 'https://florida.ourstates.org');
 define('ENABLE_ANALYTICS', true);
@@ -20,4 +20,4 @@ define('LOB_TEMPLATE_ID', 'replace-me');
 
 define('PAYPAL_BUSINESS_ID', 'replace-me');
 
-define('COST_PER_MAILER', '0.25');
+define('COST_PER_MAILER', '0.50');

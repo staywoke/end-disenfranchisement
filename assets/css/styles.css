@@ -63,6 +63,10 @@ a {
   transition: all 0.3s ease-out;
 }
 
+button:disabled {
+  pointer-events: none;
+}
+
 .main-header {
   height: auto;
   left: 0;

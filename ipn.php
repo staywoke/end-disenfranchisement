@@ -64,26 +64,27 @@ if($ipnMessage->validate()) {
       $pdo->query("INSERT INTO `ipn_log` VALUES (NULL, '{$address_city}', '{$address_country_code}', '{$address_country}', '{$address_name}', '{$address_state}', '{$address_status}', '{$address_street}', '{$address_zip}', '{$custom}', '{$first_name}', '{$invoice}', '{$item_name}', '{$item_number}', '{$last_name}', '{$mc_currency}', '{$mc_fee}', '{$mc_gross}', '{$mc_handling}', '{$mc_shipping}', '{$notify_version}', '{$payer_email}', '{$payer_status}', '{$payment_date}', '{$payment_status}', '{$payment_type}', '{$receiver_email}', '{$receiver_id}', '{$test_ipn}', '{$txn_id}', '{$txn_type}', '{$verify_sign}')");
     } catch (Exception $e) {}
 
-    // Check if we should fire off Lob ABI Calls
+
+    // Calculate Number of Mailers
+    $cost_per_mailer = floatval(COST_PER_MAILER);
+    $mc_currency = floatval($mc_currency);
+    $mc_fee = floatval($mc_fee);
+    // $total = ($mc_currency - $mc_fee); -- was instructed to diregard paypal fees
+    $total = $mc_currency;
+
+    // "Flip a Coin" to see if we should round up or down
+    if (rand(0, 1) == 1) {
+      $petitions_to_mail = ceil($total / $cost_per_mailer);
+    } else {
+      $petitions_to_mail = floor($total / $cost_per_mailer);
+    }
+
+    // Stop if we can't mail anything
+    if ($total <= 0 || $petitions_to_mail <= 0) {
+      exit;
+    }
+
     if (LOB_ENABLED === TRUE) {
-      // Calculate Number of Mailers
-      $cost_per_mailer = floatval(COST_PER_MAILER);
-      $mc_currency = floatval($mc_currency);
-      $mc_fee = floatval($mc_fee);
-      $total = ($mc_currency - $mc_fee);
-
-      // "Flip a Coin" to see if we should round up or down
-      if (rand(0, 1) == 1) {
-        $petitions_to_mail = ceil($total / $cost_per_mailer);
-      } else {
-        $petitions_to_mail = floor($total / $cost_per_mailer);
-      }
-
-      // Stop if we can't mail anything
-      if ($total <= 0 || $petitions_to_mail <= 0) {
-        exit;
-      }
-
       // Fire off letters
       $api_key = (TEST_MODE) ? LOB_TEST_API_KEY : LOB_LIVE_API_KEY;
       $lob = new \Lob\Lob($api_key);
@@ -95,11 +96,14 @@ if($ipnMessage->validate()) {
         'address_state' => 'FL',
         'address_zip'   => '32854-0717'
       ));
+    }
 
-      $stmt = $pdo->query("SELECT * FROM address_list WHERE `mailed` = 0 AND `processed` = 0 ORDER BY RAND() LIMIT {$petitions_to_mail}");
+    $stmt = $pdo->query("SELECT * FROM address_list WHERE `mailed` = 0 AND `processed` = 0 ORDER BY RAND() LIMIT {$petitions_to_mail}");
 
-      while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
-      {
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+    {
+      // Check if we should fire off Lob ABI Calls
+      if (LOB_ENABLED === TRUE) {
         try {
           $to_address = $lob->addresses()->create(array(
             'name'          => $row['name'],
@@ -116,10 +120,12 @@ if($ipnMessage->validate()) {
             'color' => true
           ));
 
-          $pdo->query('UPDATE address_list SET `mailed` = 1, `processed` = 1, `status` = "Letter Sent", `process_date` = NOW() WHERE `id` = ' . $row['id']);
+          $pdo->query('UPDATE `address_list` SET `mailed` = 1, `processed` = 1, `status` = "Letter Sent", `process_date` = NOW() WHERE `id` = ' . $row['id']);
         } catch (Exception $e) {
           $pdo->query('UPDATE `address_list` SET `processed` = 1, `status` = "' . $e->getMessage() . '", `process_date` = NOW() WHERE `id` = ' . $row['id']);
         }
+      } else {
+        $pdo->query('UPDATE address_list SET `mailed` = 1, `processed` = 1, `status` = "Donation Collected", `process_date` = NOW() WHERE `id` = ' . $row['id']);
       }
     }
 
