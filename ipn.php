@@ -67,9 +67,6 @@ if($ipnMessage->validate()) {
 
     // Calculate Number of Mailers
     $cost_per_mailer = floatval(COST_PER_MAILER);
-    $mc_currency = floatval($mc_currency);
-    $mc_fee = floatval($mc_fee);
-    // $total = ($mc_gross - $mc_fee); -- was instructed to diregard paypal fees
     $total = floatval($mc_gross);
 
     // "Flip a Coin" to see if we should round up or down
