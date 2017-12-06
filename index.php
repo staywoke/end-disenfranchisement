@@ -281,12 +281,12 @@ require 'config.php';
         <div class="our-partners">
           <h3>Our Partners</h3>
 
-          <div class="col-md-3 col-xs-6">
+          <div class="col-xs-6">
             <a href="https://floridarrc.com" target="_blank">
               <img src="assets/images/frrc.png" />
             </a>
           </div>
-          <div class="col-md-3 col-xs-6">
+          <div class="col-xs-6">
             <a href="https://www.rockthevote.org" target="_blank">
               <img src="assets/images/rtv.png" />
             </a>
