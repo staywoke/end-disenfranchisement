@@ -210,6 +210,7 @@ var renderMap = function () {
 
   if (mapData.mailings.total < 4000) {
     $('.blue-dot').hide();
+    mapData.mailings.zipcodes = []
   } else {
     var petitions = (mapData.mailings.total === 1) ? 'Petition' : 'Petitions';
     var petitionText = (mapData.mailings.total > 0) ? '<b class="number">' + numberWithCommas(mapData.mailings.total) + '</b> ' + petitions + ' Mailed' : '';
