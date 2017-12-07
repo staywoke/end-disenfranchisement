@@ -205,20 +205,24 @@ var renderMap = function () {
   trackEvent('Map', 'Data Loaded', 'Percent Collected', percentCollected);
   trackEvent('Map', 'Data Loaded', 'Days Left', daysLeft);
 
-  var petitions = (mapData.mailings.total === 1) ? 'Petition' : 'Petitions';
-  var petitionText = (mapData.mailings.total > 0) ? '<b class="number">' + numberWithCommas(mapData.mailings.total) + '</b> ' + petitions + ' Mailed' : '';
 
-  $('.map-container .petitions_mailed').html(petitionText);
 
-  if (mapData.mailings.total === 0) {
+
+  if (mapData.mailings.total < 4000) {
     $('.blue-dot').hide();
+  } else {
+    var petitions = (mapData.mailings.total === 1) ? 'Petition' : 'Petitions';
+    var petitionText = (mapData.mailings.total > 0) ? '<b class="number">' + numberWithCommas(mapData.mailings.total) + '</b> ' + petitions + ' Mailed' : '';
+
+    $('.map-container .petitions_mailed').html(petitionText);
   }
 
   // Create the chart
   Highcharts.mapChart('container', {
     chart: {
       backgroundColor: 'transparent',
-      margin: 0
+      margin: 0,
+      zoomType: false
     },
     title: {
       text: '',

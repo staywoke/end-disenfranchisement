@@ -11,7 +11,7 @@ require 'config.php';
 
   <head>
     <meta charset="utf-8">
-    <title>End Disenfranchisement</title>
+    <title>Restore The Vote</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="We need your help. We can make it possible for 1.6 million more Floridians to vote.">
 
@@ -23,7 +23,7 @@ require 'config.php';
     <!-- Twitter META Info -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:site" content="@samswey">
-    <meta property="twitter:title" content="End Disenfranchisement">
+    <meta property="twitter:title" content="Restore The Vote">
     <meta property="twitter:description" content="We need your help. We can make it possible for 1.6 million more Floridians to vote.">
     <meta property="twitter:creator" content="@mrmidi">
     <meta property="twitter:image:src" content="<?= BASE_URL ?>/assets/images/card-image.jpg">
@@ -32,15 +32,15 @@ require 'config.php';
     <!-- Open Graph protocol -->
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="End Disenfranchisement">
+    <meta property="og:title" content="Restore The Vote">
     <meta property="og:url" content="<?= BASE_URL ?>">
     <meta property="og:image" content="<?= BASE_URL ?>/assets/images/card-image.jpg">
-    <meta property="og:site_name" content="End Disenfranchisement">
+    <meta property="og:site_name" content="Restore The Vote">
     <meta property="og:description" content="We need your help. We can make it possible for 1.6 million more Floridians to vote.">
 
     <!-- Dublin Core Metadata -->
     <meta name="dc:language" content="en_US">
-    <meta name="dc:title" content="End Disenfranchisement">
+    <meta name="dc:title" content="Restore The Vote">
     <meta name="dc:source" content="<?= BASE_URL ?>">
     <meta name="dc:description" content="We need your help. We can make it possible for 1.6 million more Floridians to vote.">
 

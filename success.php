@@ -23,7 +23,7 @@ require 'config.php';
     <link rel="stylesheet" href="assets/css/styles.css?v=<?= VERSION_NUMBER ?>" />
 
     <meta property="og:url" content="<?= BASE_URL ?>" />
-    <meta property="og:title" content="End Disenfranchisement" />
+    <meta property="og:title" content="Restore The Vote" />
     <meta property="og:description" content="We need your help. We can make it possible for 1.6 million more Floridians - including 1 in 4 black Floridians - to vote during the next Presidential election." />
     <meta property="og:image" content="<?= BASE_URL ?>/assets/images/card-image.jpg" />
 
