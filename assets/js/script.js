@@ -205,9 +205,6 @@ var renderMap = function () {
   trackEvent('Map', 'Data Loaded', 'Percent Collected', percentCollected);
   trackEvent('Map', 'Data Loaded', 'Days Left', daysLeft);
 
-
-
-
   if (mapData.mailings.total < 4000) {
     $('.blue-dot').hide();
     mapData.mailings.zipcodes = []
