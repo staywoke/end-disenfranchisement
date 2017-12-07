@@ -274,9 +274,10 @@ require 'config.php';
       <div class="container">
         <div class="about-us">
           <p>
-            This platform, a project of <a href="http://staywoke.org" target="_blank">StayWoke</a>, was built in partnership with the <a href="https://floridarrc.com/" target="_blank">Florida Rights Restoration Coalition</a> to collect the petition signatures to put voter rights restoration on the 2018 Florida ballot. With assistance from <a href="https://www.rockthevote.org/" target="_blank">Rock The Vote</a>, we’ve built a crowdsourced system that mails petitions, including prepaid return postage, directly to thousands of registered voters in the state at minimal cost.
+            This platform, a project of <a href="http://staywoke.org" target="_blank">StayWoke</a>, was built in partnership with the <a href="https://floridarrc.com/" target="_blank">Florida Rights Restoration Coalition</a> to collect the petition signatures to put voter rights restoration on the 2018 Florida ballot. With assistance from <a href="https://www.rockthevote.org/" target="_blank">Rock The Vote</a>, we’ve built a crowdsourced system that mails petitions, including prepaid return postage, directly to thousands of registered voters in the state.
           </p>
         </div>
+        <div>&nbsp;</div>
       </div>
     </section>
 
