@@ -60,12 +60,12 @@ if($ipnMessage->validate()) {
     $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname='.DB_NAME, DB_USER, DB_PASS);
 
     // Check if we already have this IPN transaction, and exit if we do
-    $stmt = $pdo->query("SELECT COUNT(`id`) as total FROM `ipn_log` WHERE `verify_sign` = '{$verify_sign}'");
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    $total = intval($result['total']);
+    $verify_stmt = $pdo->query("SELECT COUNT(`id`) as total FROM `ipn_log` WHERE `verify_sign` = '{$verify_sign}'");
+    $verify_result = $verify_stmt->fetch(PDO::FETCH_ASSOC);
+    $verify_total = intval($verify_result['total']);
 
     // Only move forward if unique transaction
-    if ($total === 0) {
+    if ($verify_total === 0) {
       // Log IPN
       try {
         $pdo->query("INSERT INTO `ipn_log` VALUES (NULL, '{$address_city}', '{$address_country_code}', '{$address_country}', '{$address_name}', '{$address_state}', '{$address_status}', '{$address_street}', '{$address_zip}', '{$custom}', '{$first_name}', '{$invoice}', '{$item_name}', '{$item_number}', '{$last_name}', '{$mc_currency}', '{$mc_fee}', '{$mc_gross}', '{$mc_handling}', '{$mc_shipping}', '{$notify_version}', '{$payer_email}', '{$payer_status}', '{$payment_date}', '{$payment_status}', '{$payment_type}', '{$receiver_email}', '{$receiver_id}', '{$test_ipn}', '{$txn_id}', '{$txn_type}', '{$verify_sign}')");
