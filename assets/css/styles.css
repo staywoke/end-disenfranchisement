@@ -450,6 +450,12 @@ ul.share-buttons .sr-only {
   overflow: hidden;
 }
 
+.highcharts-mapbubble-series path.highcharts-point {
+  stroke-width: 1;
+  stroke: rgba(246, 246, 246, 0.5);
+  fill: rgba(0, 136, 223, 0.75);
+}
+
 @media (max-width: 320px) {
   .navbar-default .navbar-brand {
     font-size: 18px !important;

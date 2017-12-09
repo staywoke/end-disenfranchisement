@@ -205,7 +205,7 @@ var renderMap = function () {
   trackEvent('Map', 'Data Loaded', 'Percent Collected', percentCollected);
   trackEvent('Map', 'Data Loaded', 'Days Left', daysLeft);
 
-  if (mapData.mailings.total < 4000) {
+  if (mapData.mailings.total < 40000000) { // @TODO SET THIS BACK TO 4,000
     $('.blue-dot').hide();
     mapData.mailings.zipcodes = []
   } else {
@@ -265,7 +265,7 @@ var renderMap = function () {
         name: 'Mailings',
         color: '#0088df',
         data: mapData.mailings.zipcodes,
-        maxSize: '12%'
+        maxSize: 2,
       }
     ]
   });

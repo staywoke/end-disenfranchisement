@@ -31,7 +31,7 @@ if (MAINTENANCE_MODE && !isset($_REQUEST['skip_redirect'])) {
     <meta property="twitter:title" content="Restore The Vote">
     <meta property="twitter:description" content="We need your help. We can make it possible for 1.6 million more Floridians to vote.">
     <meta property="twitter:creator" content="@mrmidi">
-    <meta property="twitter:image:src" content="<?= BASE_URL ?>/assets/images/card-image.jpg">
+    <meta property="twitter:image:src" content="<?= BASE_URL ?>/assets/images/card-image.jpg?v=<?= VERSION_NUMBER ?>">
     <meta property="twitter:domain" content="<?= BASE_URL ?>">
 
     <!-- Open Graph protocol -->
@@ -39,7 +39,7 @@ if (MAINTENANCE_MODE && !isset($_REQUEST['skip_redirect'])) {
     <meta property="og:type" content="website">
     <meta property="og:title" content="Restore The Vote">
     <meta property="og:url" content="<?= BASE_URL ?>">
-    <meta property="og:image" content="<?= BASE_URL ?>/assets/images/card-image.jpg">
+    <meta property="og:image" content="<?= BASE_URL ?>/assets/images/card-image.jpg?v=<?= VERSION_NUMBER ?>">
     <meta property="og:site_name" content="Restore The Vote">
     <meta property="og:description" content="We need your help. We can make it possible for 1.6 million more Floridians to vote.">
 
@@ -54,7 +54,7 @@ if (MAINTENANCE_MODE && !isset($_REQUEST['skip_redirect'])) {
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/css/styles.css?v=<?= VERSION_NUMBER ?>" />
 
-    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+    <link rel="shortcut icon" href="assets/images/favicon.ico?v=<?= VERSION_NUMBER ?>" />
   </head>
 
   <body>
