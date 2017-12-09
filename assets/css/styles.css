@@ -776,6 +776,14 @@ h3.modal-title a:hover, h3.modal-title a:focus {
   color: #0088df;
 }
 
+.maintenance {
+  width: 320px;
+  height: 280px;
+  margin: 0 auto;
+  position: relative;
+  margin-top: calc(50vh - 140px);
+}
+
 .thank-you {
   background: url(../images/sendmail.gif) center center no-repeat;
   background-size: cover;
@@ -786,7 +794,8 @@ h3.modal-title a:hover, h3.modal-title a:focus {
   margin-top: calc(50vh - 140px);
 }
 
-.thank-you h1 {
+.thank-you h1,
+.maintenance h1 {
   font-weight: 300;
   font-size: 30px;
   text-transform: uppercase;
@@ -804,9 +813,11 @@ h3.modal-title a:hover, h3.modal-title a:focus {
   animation-fill-mode:forwards;
 }
 
-.thank-you div {
+.thank-you div,
+.maintenance div {
+  padding: 0 20px;
   font-weight: 300;
-  font-size: 20px;
+  font-size: 18px;
   text-transform: uppercase;
   text-align: center;
   position: absolute;
@@ -934,6 +945,15 @@ span.success-message {
 
 .our-partners {
   padding-bottom: 40px;
+}
+
+.paid-for-by {
+  max-width: 500px;
+  border: 1px solid #999;
+  padding: 20px;
+  color: #999;
+  margin: 0 auto;
+  margin-bottom: 60px;
 }
 
 /* Keyframes for the fade-in */

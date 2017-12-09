@@ -4,6 +4,11 @@ if (!file_exists('config.php')) {
 }
 
 require 'config.php';
+
+if (MAINTENANCE_MODE && !isset($_REQUEST['skip_redirect'])) {
+  header("Location: maintenance.php");
+  exit();
+}
 ?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -278,6 +283,9 @@ require 'config.php';
           </p>
         </div>
         <div>&nbsp;</div>
+        <div class="paid-for-by">
+          Paid for by StayWoke, Inc., P.O. Box 540717, Orlando, FL 32854
+        </div>
       </div>
     </section>
 
