@@ -4,11 +4,15 @@ set_time_limit(0);
 use PayPal\IPN\PPIPNMessage;
 
 if(file_exists(dirname(__FILE__) .'/vendor/autoload.php')) {
-  require 'vendor/autoload.php';
+  require dirname(__FILE__) . '/vendor/autoload.php';
 }
 
-if(file_exists(dirname(__FILE__) .'/config.php')) {
-  require 'config.php';
+if(file_exists(dirname(__FILE__) . '/config.php')) {
+  require dirname(__FILE__) . '/config.php';
+}
+
+if(file_exists(dirname(__FILE__) . '/data/functions.php')) {
+  require dirname(__FILE__) . '/data/functions.php';
 }
 
 $config = array(
@@ -126,7 +130,10 @@ if($ipnMessage->validate()) {
       }
     }
 
-    // Remove old Mailings File now that Database is Updated
-    unlink(dirname(__FILE__) . '/cache/mailings.json');
+    // Update Mailings File now that Database is Updated
+    if (function_exists('create_mailings_json')) {
+      $json = create_mailings_json();
+      file_put_contents(dirname(__FILE__) . '/cache/mailings.json', $json, LOCK_EX);
+    }
   }
 }
