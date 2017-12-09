@@ -11,10 +11,6 @@ if(file_exists(dirname(__FILE__) . '/config.php')) {
   require dirname(__FILE__) . '/config.php';
 }
 
-if(file_exists(dirname(__FILE__) . '/data/functions.php')) {
-  require dirname(__FILE__) . '/data/functions.php';
-}
-
 $config = array(
   "mode" => (TEST_MODE) ? 'SANDBOX' : 'LIVE',
 );
@@ -63,76 +59,98 @@ if($ipnMessage->validate()) {
     // Connect to Database
     $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname='.DB_NAME, DB_USER, DB_PASS);
 
-    // Log IPN
-    try {
-      $pdo->query("INSERT INTO `ipn_log` VALUES (NULL, '{$address_city}', '{$address_country_code}', '{$address_country}', '{$address_name}', '{$address_state}', '{$address_status}', '{$address_street}', '{$address_zip}', '{$custom}', '{$first_name}', '{$invoice}', '{$item_name}', '{$item_number}', '{$last_name}', '{$mc_currency}', '{$mc_fee}', '{$mc_gross}', '{$mc_handling}', '{$mc_shipping}', '{$notify_version}', '{$payer_email}', '{$payer_status}', '{$payment_date}', '{$payment_status}', '{$payment_type}', '{$receiver_email}', '{$receiver_id}', '{$test_ipn}', '{$txn_id}', '{$txn_type}', '{$verify_sign}')");
-    } catch (Exception $e) {}
+    // Check if we already have this IPN transaction, and exit if we do
+    $stmt = $pdo->query("SELECT COUNT(`id`) as total FROM `ipn_log` WHERE `verify_sign` = '{$verify_sign}'");
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $total = intval($result['total']);
+
+    // Only move forward if unique transaction
+    if ($total === 0) {
+      // Log IPN
+      try {
+        $pdo->query("INSERT INTO `ipn_log` VALUES (NULL, '{$address_city}', '{$address_country_code}', '{$address_country}', '{$address_name}', '{$address_state}', '{$address_status}', '{$address_street}', '{$address_zip}', '{$custom}', '{$first_name}', '{$invoice}', '{$item_name}', '{$item_number}', '{$last_name}', '{$mc_currency}', '{$mc_fee}', '{$mc_gross}', '{$mc_handling}', '{$mc_shipping}', '{$notify_version}', '{$payer_email}', '{$payer_status}', '{$payment_date}', '{$payment_status}', '{$payment_type}', '{$receiver_email}', '{$receiver_id}', '{$test_ipn}', '{$txn_id}', '{$txn_type}', '{$verify_sign}')");
+      } catch (Exception $e) {}
 
 
-    // Calculate Number of Mailers
-    $cost_per_mailer = floatval(COST_PER_MAILER);
-    $total = floatval($mc_gross);
+      // Calculate Number of Mailers
+      $cost_per_mailer = floatval(COST_PER_MAILER);
+      $total = floatval($mc_gross);
 
-    // "Flip a Coin" to see if we should round up or down
-    if (rand(0, 1) == 1) {
-      $petitions_to_mail = ceil($total / $cost_per_mailer);
-    } else {
-      $petitions_to_mail = floor($total / $cost_per_mailer);
-    }
-
-    // Stop if we can't mail anything
-    if ($total <= 0 || $petitions_to_mail <= 0) {
-      exit;
-    }
-
-    if (LOB_ENABLED === TRUE) {
-      // Fire off letters
-      $api_key = (TEST_MODE) ? LOB_TEST_API_KEY : LOB_LIVE_API_KEY;
-      $lob = new \Lob\Lob($api_key);
-
-      $from_address = $lob->addresses()->create(array(
-        'name'          => 'StayWoke',
-        'address_line1' => 'PO Box 540717',
-        'address_city'  => 'Orlando',
-        'address_state' => 'FL',
-        'address_zip'   => '32854-0717'
-      ));
-    }
-
-    $stmt = $pdo->query("SELECT * FROM address_list WHERE `mailed` = 0 AND `processed` = 0 ORDER BY RAND() LIMIT {$petitions_to_mail}");
-
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
-    {
-      // Check if we should fire off Lob ABI Calls
-      if (LOB_ENABLED === TRUE) {
-        try {
-          $to_address = $lob->addresses()->create(array(
-            'name'          => $row['name'],
-            'address_line1' => $row['address'],
-            'address_city'  => $row['city'],
-            'address_state' => $row['state'],
-            'address_zip'   => $row['zipcode']
-          ));
-
-          $letter = $lob->letters()->create(array(
-            'to'    => $to_address['id'],
-            'from'  => $from_address['id'],
-            'file'  => LOB_TEMPLATE_ID,
-            'color' => true
-          ));
-
-          $pdo->query('UPDATE `address_list` SET `mailed` = 1, `processed` = 1, `status` = "Letter Sent", `process_date` = NOW() WHERE `id` = ' . $row['id']);
-        } catch (Exception $e) {
-          $pdo->query('UPDATE `address_list` SET `processed` = 1, `status` = "' . $e->getMessage() . '", `process_date` = NOW() WHERE `id` = ' . $row['id']);
-        }
+      // "Flip a Coin" to see if we should round up or down
+      if (rand(0, 1) == 1) {
+        $petitions_to_mail = ceil($total / $cost_per_mailer);
       } else {
-        $pdo->query('UPDATE address_list SET `mailed` = 1, `processed` = 1, `status` = "Donation Collected", `process_date` = NOW() WHERE `id` = ' . $row['id']);
+        $petitions_to_mail = floor($total / $cost_per_mailer);
       }
-    }
 
-    // Update Mailings File now that Database is Updated
-    if (function_exists('create_mailings_json')) {
-      $json = create_mailings_json();
+      // Stop if we can't mail anything
+      if ($total <= 0 || $petitions_to_mail <= 0) {
+        exit;
+      }
+
+      if (LOB_ENABLED === TRUE) {
+        // Fire off letters
+        $api_key = (TEST_MODE) ? LOB_TEST_API_KEY : LOB_LIVE_API_KEY;
+        $lob = new \Lob\Lob($api_key);
+
+        $from_address = $lob->addresses()->create(array(
+          'name'          => 'StayWoke',
+          'address_line1' => 'PO Box 540717',
+          'address_city'  => 'Orlando',
+          'address_state' => 'FL',
+          'address_zip'   => '32854-0717'
+        ));
+      }
+
+      $stmt = $pdo->query("SELECT * FROM address_list WHERE `mailed` = 0 AND `processed` = 0 ORDER BY RAND() LIMIT {$petitions_to_mail}");
+
+      while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+      {
+        // Check if we should fire off Lob ABI Calls
+        if (LOB_ENABLED === TRUE) {
+          try {
+            $to_address = $lob->addresses()->create(array(
+              'name'          => $row['name'],
+              'address_line1' => $row['address'],
+              'address_city'  => $row['city'],
+              'address_state' => $row['state'],
+              'address_zip'   => $row['zipcode']
+            ));
+
+            $letter = $lob->letters()->create(array(
+              'to'    => $to_address['id'],
+              'from'  => $from_address['id'],
+              'file'  => LOB_TEMPLATE_ID,
+              'color' => true
+            ));
+
+            $pdo->query('UPDATE `address_list` SET `mailed` = 1, `processed` = 1, `status` = "Letter Sent", `process_date` = NOW() WHERE `id` = ' . $row['id']);
+          } catch (Exception $e) {
+            $pdo->query('UPDATE `address_list` SET `processed` = 1, `status` = "' . $e->getMessage() . '", `process_date` = NOW() WHERE `id` = ' . $row['id']);
+          }
+        } else {
+          $pdo->query('UPDATE address_list SET `mailed` = 1, `processed` = 1, `status` = "Donation Collected", `process_date` = NOW() WHERE `id` = ' . $row['id']);
+        }
+      }
+
+      // Update Mailings File now that Database is Updated
+      $mailings = $pdo->query("SELECT `a`.`zipcode`, COUNT(`a`.`id`) as 'count', `z`.`latitude` AS latitude, `z`.`longitude` AS longitude FROM `address_list` a LEFT JOIN `zipcode` z ON `a`.`zipcode` = `z`.`zipcode` WHERE `a`.`mailed` = 1 GROUP BY `a`.`zipcode`, `z`.`latitude`, `z`.`longitude`")->fetchAll(PDO::FETCH_ASSOC);
+      $total = 0;
+      $data = array();
+      foreach ($mailings as $row) {
+        $total += intval($row['count'], 10);
+        if ($row['latitude'] && $row['longitude']) {
+          $data[] = array(
+            'zipcode' => $row['zipcode'],
+            'count' => intval($row['count'], 10),
+            'z' => intval($row['count'], 10),
+            'lat' => $row['latitude'],
+            'lon' => $row['longitude']
+          );
+        }
+      }
+
+      $json = json_encode(array('total' => $total, 'zipcodes' => $data), JSON_PRETTY_PRINT);
       file_put_contents(dirname(__FILE__) . '/cache/mailings.json', $json, LOCK_EX);
     }
   }

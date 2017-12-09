@@ -37,11 +37,9 @@ function get_mailings_json() {
 
   if (file_exists($file)) {
     return file_get_contents($file);
+  } else {
+    return json_encode(array('total' => 0, 'zipcodes' => array()), JSON_PRETTY_PRINT);
   }
-
-  $json = create_mailings_json();
-  file_put_contents($file, $json);
-  return $json;
 }
 
 /**
@@ -225,32 +223,6 @@ function create_json() {
       return json_encode(array('error' => 'Unable to Generate JSON File'), JSON_PRETTY_PRINT);
     }
   }
-}
-
-/**
- * Fetch ZipCodes Mailers
- * @return sting
- */
-function create_mailings_json() {
-  $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname='.DB_NAME, DB_USER, DB_PASS);
-  $mailings = $pdo->query("SELECT `a`.`zipcode`, COUNT(`a`.`id`) as 'count', `z`.`latitude` AS latitude, `z`.`longitude` AS longitude FROM `address_list` a LEFT JOIN `zipcode` z ON `a`.`zipcode` = `z`.`zipcode` WHERE `a`.`mailed` = 1 GROUP BY `a`.`zipcode`, `z`.`latitude`, `z`.`longitude`")->fetchAll(PDO::FETCH_ASSOC);
-
-  $total = 0;
-  $data = array();
-  foreach ($mailings as $row) {
-    $total += intval($row['count'], 10);
-    if ($row['latitude'] && $row['longitude']) {
-      $data[] = array(
-        'zipcode' => $row['zipcode'],
-        'count' => intval($row['count'], 10),
-        'z' => intval($row['count'], 10),
-        'lat' => $row['latitude'],
-        'lon' => $row['longitude']
-      );
-    }
-  }
-
-  return json_encode(array('total' => $total, 'zipcodes' => $data), JSON_PRETTY_PRINT);
 }
 
 /**
