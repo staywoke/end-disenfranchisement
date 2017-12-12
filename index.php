@@ -279,7 +279,7 @@ if (MAINTENANCE_MODE && !isset($_REQUEST['skip_redirect'])) {
       <div class="container">
         <div class="about-us">
           <p>
-            This platform, a project of <a href="http://staywoke.org" target="_blank">StayWoke</a>, was built in partnership with the <a href="https://secondchancesfl.org/" target="_blank">Florida Rights Restoration Coalition and Floridians for a Fair Democracy</a> to collect the petition signatures to put voter rights restoration on the 2018 Florida ballot. With assistance from <a href="https://www.rockthevote.org/" target="_blank">Rock The Vote</a>, we’ve built a crowdsourced system that mails petitions, including prepaid return postage, directly to thousands of registered voters in the state.
+            This platform, a project of <a href="http://staywoke.org" target="_blank">StayWoke</a>, was built in partnership with the <a href="https://secondchancesfl.org/" target="_blank">Florida Rights Restoration Coalition</a> and <a href="http://floridiansforafairdemocracy.com/" target="_blank">Floridians for a Fair Democracy</a> to collect the petition signatures to put voter rights restoration on the 2018 Florida ballot. With assistance from <a href="https://www.rockthevote.org/" target="_blank">Rock The Vote</a>, we’ve built a crowdsourced system that mails petitions, including prepaid return postage, directly to thousands of registered voters in the state.
           </p>
         </div>
         <div>&nbsp;</div>
