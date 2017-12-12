@@ -284,7 +284,7 @@ if (MAINTENANCE_MODE && !isset($_REQUEST['skip_redirect'])) {
         </div>
         <div>&nbsp;</div>
         <div class="paid-for-by">
-          Pd. pol. adv. paid for and provided in-kind by StayWoke StayWoke, Inc., P.O. Box 540717, Orlando, FL 32854, and approved by Floridians for a Fair Democracy.
+          Pd. pol. adv. paid for and provided in-kind by StayWoke, Inc., P.O. Box 540717, Orlando, FL 32854, and approved by Floridians for a Fair Democracy.
         </div>
       </div>
     </section>
