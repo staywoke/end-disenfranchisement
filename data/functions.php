@@ -43,6 +43,20 @@ function get_mailings_json() {
 }
 
 /**
+ * Get JSON
+ * @return json
+ */
+function get_donations_json() {
+  $file = '../cache/donations.json';
+
+  if (file_exists($file)) {
+    return file_get_contents($file);
+  } else {
+    return json_encode(array('total' => 0, 'zipcodes' => array()), JSON_PRETTY_PRINT);
+  }
+}
+
+/**
  * Get HTML from Florida from local cache, or remote server
  * @return string HTML Content
  */

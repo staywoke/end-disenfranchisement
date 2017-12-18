@@ -88,6 +88,16 @@ if($ipnMessage->validate()) {
         exit;
       }
 
+      // Update Donations File now that Database is Updated
+      $donations = $pdo->query("SELECT SUM(`mc_gross`) AS 'donations', COUNT(`id`) AS 'donors' FROM `ipn_log`")->fetch(PDO::FETCH_ASSOC);
+      $json_donations = json_encode(array(
+        'donations' => intval($donations['donations']),
+        'donors' => intval($donations['donors']),
+        'petitions' => round(ceil(floatval($donations['donations']) / COST_PER_MAILER))
+      ), JSON_PRETTY_PRINT);
+
+      file_put_contents(dirname(__FILE__) . '/cache/donations.json', $json_donations, LOCK_EX);
+
       if (LOB_ENABLED === TRUE) {
         // Fire off letters
         $api_key = (TEST_MODE) ? LOB_TEST_API_KEY : LOB_LIVE_API_KEY;
@@ -102,56 +112,58 @@ if($ipnMessage->validate()) {
         ));
       }
 
-      $stmt = $pdo->query("SELECT * FROM address_list WHERE `mailed` = 0 AND `processed` = 0 ORDER BY RAND() LIMIT {$petitions_to_mail}");
+      if (TRACK_MAILINGS === TRUE) {
+        $stmt = $pdo->query("SELECT * FROM address_list WHERE `mailed` = 0 AND `processed` = 0 ORDER BY RAND() LIMIT {$petitions_to_mail}");
 
-      while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
-      {
-        // Check if we should fire off Lob ABI Calls
-        if (LOB_ENABLED === TRUE) {
-          try {
-            $to_address = $lob->addresses()->create(array(
-              'name'          => $row['name'],
-              'address_line1' => $row['address'],
-              'address_city'  => $row['city'],
-              'address_state' => $row['state'],
-              'address_zip'   => $row['zipcode']
-            ));
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+        {
+          // Check if we should fire off Lob ABI Calls
+          if (LOB_ENABLED === TRUE) {
+            try {
+              $to_address = $lob->addresses()->create(array(
+                'name'          => $row['name'],
+                'address_line1' => $row['address'],
+                'address_city'  => $row['city'],
+                'address_state' => $row['state'],
+                'address_zip'   => $row['zipcode']
+              ));
 
-            $letter = $lob->letters()->create(array(
-              'to'    => $to_address['id'],
-              'from'  => $from_address['id'],
-              'file'  => LOB_TEMPLATE_ID,
-              'color' => true
-            ));
+              $letter = $lob->letters()->create(array(
+                'to'    => $to_address['id'],
+                'from'  => $from_address['id'],
+                'file'  => LOB_TEMPLATE_ID,
+                'color' => true
+              ));
 
-            $pdo->query('UPDATE `address_list` SET `mailed` = 1, `processed` = 1, `status` = "Letter Sent", `process_date` = NOW() WHERE `id` = ' . $row['id']);
-          } catch (Exception $e) {
-            $pdo->query('UPDATE `address_list` SET `processed` = 1, `status` = "' . $e->getMessage() . '", `process_date` = NOW() WHERE `id` = ' . $row['id']);
+              $pdo->query('UPDATE `address_list` SET `mailed` = 1, `processed` = 1, `status` = "Letter Sent", `process_date` = NOW() WHERE `id` = ' . $row['id']);
+            } catch (Exception $e) {
+              $pdo->query('UPDATE `address_list` SET `processed` = 1, `status` = "' . $e->getMessage() . '", `process_date` = NOW() WHERE `id` = ' . $row['id']);
+            }
+          } else {
+            $pdo->query('UPDATE address_list SET `mailed` = 1, `processed` = 1, `status` = "Donation Collected", `process_date` = NOW() WHERE `id` = ' . $row['id']);
           }
-        } else {
-          $pdo->query('UPDATE address_list SET `mailed` = 1, `processed` = 1, `status` = "Donation Collected", `process_date` = NOW() WHERE `id` = ' . $row['id']);
         }
-      }
 
-      // Update Mailings File now that Database is Updated
-      $mailings = $pdo->query("SELECT `a`.`zipcode`, COUNT(`a`.`id`) as 'count', `z`.`latitude` AS latitude, `z`.`longitude` AS longitude FROM `address_list` a INNER JOIN `zipcode` z ON `a`.`zipcode` = `z`.`zipcode` WHERE `a`.`mailed` = 1 GROUP BY `a`.`zipcode`, `z`.`latitude`, `z`.`longitude`")->fetchAll(PDO::FETCH_ASSOC);
-      $total = 0;
-      $data = array();
-      foreach ($mailings as $row) {
-        $total += intval($row['count'], 10);
-        if ($row['latitude'] && $row['longitude']) {
-          $data[] = array(
-            'zipcode' => $row['zipcode'],
-            'count' => intval($row['count'], 10),
-            'z' => intval($row['count'], 10),
-            'lat' => $row['latitude'],
-            'lon' => $row['longitude']
-          );
+        // Update Mailings File now that Database is Updated
+        $mailings = $pdo->query("SELECT `a`.`zipcode`, COUNT(`a`.`id`) as 'count', `z`.`latitude` AS latitude, `z`.`longitude` AS longitude FROM `address_list` a INNER JOIN `zipcode` z ON `a`.`zipcode` = `z`.`zipcode` WHERE `a`.`mailed` = 1 GROUP BY `a`.`zipcode`, `z`.`latitude`, `z`.`longitude`")->fetchAll(PDO::FETCH_ASSOC);
+        $total = 0;
+        $data = array();
+        foreach ($mailings as $row) {
+          $total += intval($row['count'], 10);
+          if ($row['latitude'] && $row['longitude']) {
+            $data[] = array(
+              'zipcode' => $row['zipcode'],
+              'count' => intval($row['count'], 10),
+              'z' => intval($row['count'], 10),
+              'lat' => $row['latitude'],
+              'lon' => $row['longitude']
+            );
+          }
         }
-      }
 
-      $json = json_encode(array('total' => $total, 'zipcodes' => $data), JSON_PRETTY_PRINT);
-      file_put_contents(dirname(__FILE__) . '/cache/mailings.json', $json, LOCK_EX);
+        $json = json_encode(array('total' => $total, 'zipcodes' => $data), JSON_PRETTY_PRINT);
+        file_put_contents(dirname(__FILE__) . '/cache/mailings.json', $json, LOCK_EX);
+      }
     }
   }
 }

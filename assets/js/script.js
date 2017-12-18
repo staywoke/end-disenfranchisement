@@ -169,11 +169,17 @@ $(function() {
     mapData.check.mailings = true;
     renderMap();
   });
+
+  $.getJSON('data/donations.php', function( data ) {
+    mapData.donations = data;
+    mapData.check.donations = true;
+    renderMap();
+  });
 });
 
 var renderMap = function () {
 
-  if (!mapData.check.signatures || !mapData.check.mailings) {
+  if (!mapData.check.signatures || !mapData.check.mailings || !mapData.check.donations) {
     return false;
   }
 
@@ -205,12 +211,14 @@ var renderMap = function () {
   trackEvent('Map', 'Data Loaded', 'Percent Collected', percentCollected);
   trackEvent('Map', 'Data Loaded', 'Days Left', daysLeft);
 
-  if (mapData.mailings.total < 4000) { // @TODO SET THIS BACK TO 4,000
+  var mailedPetitions = (mapData.donations.petitions) ? mapData.donations.petitions : mapData.mailings.total;
+
+  if (mailedPetitions < 4000) { // @TODO SET THIS BACK TO 4,000
     $('.blue-dot').hide();
     mapData.mailings.zipcodes = []
   } else {
-    var petitions = (mapData.mailings.total === 1) ? 'Petition' : 'Petitions';
-    var petitionText = (mapData.mailings.total > 0) ? '<b class="number">' + numberWithCommas(mapData.mailings.total) + '</b> ' + petitions + ' Mailed' : '';
+    var petitions = (mailedPetitions === 1) ? 'Petition' : 'Petitions';
+    var petitionText = (mailedPetitions > 0) ? '<b class="number">' + numberWithCommas(mailedPetitions) + '</b> ' + petitions + ' Mailed' : '';
 
     $('.map-container .petitions_mailed').html(petitionText);
   }

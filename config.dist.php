@@ -1,10 +1,11 @@
 <?php
-define('VERSION_NUMBER', '1.0.10');
+define('VERSION_NUMBER', '1.0.11');
 define('MAINTENANCE_MODE', FALSE);
 define('TEST_MODE', FALSE);
 define('BASE_URL', 'https://florida.ourstates.org');
 define('ENABLE_ANALYTICS', TRUE);
 define('CACHE_EXPIRE', 86400);
+define('TRACK_MAILINGS', FALSE);
 
 define('SHARE_MESSAGE', "1.6 million people are banned from voting in Florida.\n\nHere's how you can help: https://florida.ourstates.org");
 
