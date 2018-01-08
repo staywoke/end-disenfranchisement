@@ -998,7 +998,7 @@ span.success-message {
     padding: 8px 16px;
   }
   .map-container {
-    padding-top: 70px;
+    padding-top: 110px;
   }
   .map-container h1 {
     line-height: 22px;
@@ -1059,6 +1059,12 @@ span.success-message {
   textarea {
     min-height: 250px;
   }
+  #container {
+    height: calc(100vh - 448px);
+  }
+  .map-container {
+    padding-top: 118px;
+  }
 }
 
 @media (max-width: 320px) {
@@ -1074,7 +1080,10 @@ span.success-message {
     padding: 3px 6px;
   }
   #container {
-    height: calc(100vh - 430px);
+    height: calc(100vh - 478px);
+  }
+  .map-container {
+    padding-top: 118px;
   }
 }
 
