@@ -962,6 +962,20 @@ span.success-message {
   margin-bottom: 60px;
 }
 
+.action-banner {
+  background: #222222;
+  text-align: center;
+  padding: 6px 20px;
+}
+
+.action-banner a {
+  color: #FFF;
+  text-transform: uppercase;
+  line-height: 18px;
+  font-size: 14px;
+  display: block;
+}
+
 /* Keyframes for the fade-in */
 @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }

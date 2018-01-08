@@ -58,7 +58,6 @@ if (MAINTENANCE_MODE && !isset($_REQUEST['skip_redirect'])) {
   </head>
 
   <body>
-
     <!-- MODAL -->
     <div class="modal-window" id="donate-modal">
       <div class="modal-wrapper">
@@ -132,6 +131,13 @@ if (MAINTENANCE_MODE && !isset($_REQUEST['skip_redirect'])) {
 
     <!--  HEADER -->
     <header class="main-header clearfix">
+
+      <!-- ACTION BANNER -->
+      <div class="action-banner">
+        <a href="http://eepurl.com/dgyG3z" target="_blank">
+          Sign up to call FL voters and tell them to sign the petition!
+        </a>
+      </div>
 
       <section class="header-wrapper">
 
