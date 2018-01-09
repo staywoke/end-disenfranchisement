@@ -10,7 +10,7 @@ function trackEvent(category, action, label, value){
 
 function printPetition () {
   trackEvent('Navigation', 'Link Clicked', 'Print Petition');
-  return confirm('If you\'re registered to vote in Florida, print this petition, fill it out, then mail it back by 1/8/18 to ensure it’s verified by the deadline.');
+  return confirm('If you\'re registered to vote in Florida, print this petition, fill it out, then mail it back by 1/15/18 to ensure it’s verified by the deadline.');
 }
 
 function registerToVote () {

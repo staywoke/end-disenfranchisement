@@ -75,7 +75,6 @@ if (MAINTENANCE_MODE && !isset($_REQUEST['skip_redirect'])) {
           <input type="hidden" name="rm" value="1">
           <input type="hidden" name="currency_code" value="USD">
           <input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHosted">
-          <input type="hidden" name="address_override" value="1">
 
           <div class="container-fluid selection-group">
             <div class="row">
