@@ -68,6 +68,7 @@ if (MAINTENANCE_MODE && !isset($_REQUEST['skip_redirect'])) {
           <input type="hidden" name="cancel_return" value="<?= BASE_URL ?>">
           <input type="hidden" name="notify_url" value="<?= BASE_URL ?>/ipn.php">
           <input type="hidden" name="lc" value="US">
+          <input type="hidden" name="cn" value="MAILING ADDRESS REQUIRED FOR DONATIONS.">
           <input type="hidden" name="item_name" value="StayWoke">
           <input type="hidden" name="item_number" value="FL">
           <input type="hidden" name="no_note" value="1">
