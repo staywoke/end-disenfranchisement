@@ -61,14 +61,13 @@ if (MAINTENANCE_MODE && !isset($_REQUEST['skip_redirect'])) {
     <!-- MODAL -->
     <div class="modal-window" id="donate-modal">
       <div class="modal-wrapper">
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" onsubmit="return confirm('ATTENTION:\n\nYou are about to be taken to PayPal.com for your Donation.\n\nFlorida Election Law Requires that Donors Provide a Mailing Address.\n\nPlease provide your Mailing Address via PayPal as part of your Donation to prevent any issues.')">
           <input type="hidden" name="cmd" value="_donations">
           <input type="hidden" name="business" value="<?= PAYPAL_BUSINESS_ID ?>">
           <input type="hidden" name="return" value="<?= BASE_URL ?>/success.php">
           <input type="hidden" name="cancel_return" value="<?= BASE_URL ?>">
           <input type="hidden" name="notify_url" value="<?= BASE_URL ?>/ipn.php">
           <input type="hidden" name="lc" value="US">
-          <input type="hidden" name="cn" value="MAILING ADDRESS REQUIRED FOR DONATIONS.">
           <input type="hidden" name="item_name" value="StayWoke">
           <input type="hidden" name="item_number" value="FL">
           <input type="hidden" name="no_note" value="1">
