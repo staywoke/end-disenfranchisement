@@ -61,69 +61,8 @@ if (MAINTENANCE_MODE && !isset($_REQUEST['skip_redirect'])) {
     <!-- MODAL -->
     <div class="modal-window" id="donate-modal">
       <div class="modal-wrapper">
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" onsubmit="return confirm('ATTENTION:\n\nYou are about to be taken to PayPal.com for your Donation.\n\nFlorida Election Law Requires that Donors Provide a Mailing Address.\n\nPlease provide your Mailing Address via PayPal as part of your Donation to prevent any issues.')">
-          <input type="hidden" name="cmd" value="_donations">
-          <input type="hidden" name="business" value="<?= PAYPAL_BUSINESS_ID ?>">
-          <input type="hidden" name="return" value="<?= BASE_URL ?>/success.php">
-          <input type="hidden" name="cancel_return" value="<?= BASE_URL ?>">
-          <input type="hidden" name="notify_url" value="<?= BASE_URL ?>/ipn.php">
-          <input type="hidden" name="lc" value="US">
-          <input type="hidden" name="item_name" value="StayWoke">
-          <input type="hidden" name="item_number" value="FL">
-          <input type="hidden" name="no_note" value="1">
-          <input type="hidden" name="no_shipping" value="2">
-          <input type="hidden" name="rm" value="1">
-          <input type="hidden" name="currency_code" value="USD">
-          <input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHosted">
-
-          <div class="container-fluid selection-group">
-            <div class="row">
-              <h3 class="modal-title">How many petitions do you want to mail?</h3>
-              <a href="#" onclick="closeModal(); return false;" class="close-modal">
-                <i class="fa fa-times"></i>
-              </a>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">
-                <button type="button" class="btn btn-block donation-choice" data-price="5"></button>
-              </div>
-              <div class="col-sm-3">
-                <button type="button" class="btn btn-block donation-choice" data-price="10"></button>
-              </div>
-              <div class="col-sm-3">
-                <button type="button" class="btn btn-block donation-choice" data-price="20"></button>
-              </div>
-              <div class="col-sm-3">
-                <button type="button" class="btn btn-block donation-choice" data-price="50"></button>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">
-                <button type="button" class="btn btn-block donation-choice" data-price="100"></button>
-              </div>
-              <div class="col-sm-3">
-                <button type="button" class="btn btn-block donation-choice" data-price="500"></button>
-              </div>
-              <div class="col-sm-6">
-                <div class="input-group mb-2 mb-sm-0">
-                  <div class="input-group-addon">$</div>
-                  <input type="number" onkeypress="return (event.charCode === 13 || (event.charCode >= 48 && event.charCode <= 57))" class="form-control" id="amount" name="amount" placeholder="Enter USD Amount" required="required" autocomplete="false">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-9" id="donation-text">
-                For every <b>$1</b>, we’ll mail <b>2</b> petitions with prepaid postage to FL voters.
-              </div>
-              <div class="col-sm-3">
-                <button type="submit" class="btn btn-block make-donation">Send</button>
-              </div>
-            </div>
-            <div class="row live-in-florida">
-              <a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()">Already live in Florida?&nbsp; Click here to sign the petition.</a>
-            </div>
-          </div>
-        </form>
+        <p>Because all petitions need to be signed, returned, processed, and verified by the state by 2/1/18 there is no longer time to mail additional petitions to voters. Sign up to call voters who’ve received petitions in the mail and tell them to sign and return them as soon as possible.</p>
+        <p><a href="http://eepurl.com/dgyG3z" target="_blank" class="btn btn-block make-donation">Sign Up</a></p>
       </div>
       <div class="modal-overlay" onclick="closeModal()"></div>
     </div>
