@@ -71,7 +71,7 @@ if (MAINTENANCE_MODE && !isset($_REQUEST['skip_redirect'])) {
     <header class="main-header clearfix">
 
       <!-- ACTION BANNER -->
-      <div class="action-banner">
+      <div class="action-banner hide-on-complete">
         <a href="http://eepurl.com/dgyG3z" target="_blank">
           Sign up to call FL voters and tell them to sign the petition!
         </a>
@@ -93,10 +93,10 @@ if (MAINTENANCE_MODE && !isset($_REQUEST['skip_redirect'])) {
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right">
-                <li>
+                <li class="hide-on-complete">
                   <a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()">SIGN PETITION</a>
                 </li>
-                <li>
+                <li class="hide-on-complete">
                   <a href="#donate" onclick="openModal(); return false;">DONATE PETITIONS</a>
                 </li>
                 <li>
@@ -117,18 +117,14 @@ if (MAINTENANCE_MODE && !isset($_REQUEST['skip_redirect'])) {
         <h1>We can give <b>1.6 million people</b> in Florida the ability to vote.</h1>
         <h2><span class="signatures_needed"></span> more Floridians need to sign the <a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()">petition</a> in the next <span class="days_left"></span> days.</h1>
 
-        <div class="row action-bar">
+        <div class="row action-bar hide-on-complete">
           <div class="col-xs-6">
             <a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()" class="btn btn-dark btn-block help-button">Sign Petition</a>
           </div>
           <div class="col-xs-6">
             <a href="#donate" onclick="openModal(); return false;" class="btn btn-dark btn-block help-button">Donate Petitions</a>
           </div>
-
-
-
         </div>
-
 
         <div id="container"></div>
 
@@ -170,7 +166,7 @@ if (MAINTENANCE_MODE && !isset($_REQUEST['skip_redirect'])) {
       <div class="container">
         <div class="row">
 
-          <div class="col-xs-12 text-left signup-text">
+          <div class="col-xs-12 text-left signup-text hide-on-complete" style="display: none;">
             <h2>We Need Your Help</h2>
             <p>1 in 10 Florida adults is banned from voting because of a past conviction. Florida is one of only four states that permanently takes away their vote. We need <span class="signatures_needed"></span> more Florida registered voters to sign <a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()">this petition</a> by February 1st, 2018 to put an initiative on the ballot that would restore their ability to vote.</p>
 
@@ -210,6 +206,28 @@ if (MAINTENANCE_MODE && !isset($_REQUEST['skip_redirect'])) {
                 </ul>
               </div>
             </div>
+
+          </div>
+
+          <div class="text-left signup-text show-on-complete" style="display: none;">
+            <h2>Goal Reached!</h2>
+            <p> Enough petition signatures have been submitted to give Florida voters a chance to restore the voting rights of 1.6 million people this November.</p>
+            <p>&nbsp;</p>
+            <b class="mb">Together, in just one month, we:</b>
+
+            <ul class="mb">
+              <li><b>Mailed 133,126 petitions</b> to FL voters</li>
+              <li><b>Texted 86,705 FL voters</b> in collaboration with RapidResist</li>
+              <li><b>Called 2,052 FL voters</b> through phone banking</li>
+            </ul>
+
+            <p>
+              <br />Now, it's time to make sure Floridians vote YES on this initiative in November.<br />
+            </p>
+
+            <p>
+              <a href="http://eepurl.com/dgyG3z" target="_blank" class="btn make-donation" style="color: #FFF">Sign up to help out</a>
+            </p>
 
           </div>
         </div>
