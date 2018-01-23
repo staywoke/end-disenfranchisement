@@ -70,39 +70,14 @@ if (MAINTENANCE_MODE && !isset($_REQUEST['skip_redirect'])) {
     <!--  HEADER -->
     <header class="main-header clearfix">
 
-      <!-- ACTION BANNER -->
-      <div class="action-banner hide-on-complete">
-        <a href="http://eepurl.com/dgyG3z" target="_blank">
-          Sign up to call FL voters and tell them to sign the petition!
-        </a>
-      </div>
-
       <section class="header-wrapper">
 
         <div class="navbar navbar-default">
           <div class="container">
             <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
               <a class="navbar-brand" href="<?= BASE_URL ?>" target="_top">
                 <img src="assets/images/logo.png" />
               </a>
-            </div>
-            <div class="navbar-collapse collapse">
-              <ul class="nav navbar-nav navbar-right">
-                <li class="hide-on-complete">
-                  <a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()">SIGN PETITION</a>
-                </li>
-                <li class="hide-on-complete">
-                  <a href="#donate" onclick="openModal(); return false;">DONATE PETITIONS</a>
-                </li>
-                <li>
-                  <a href="#about-us" title="">ABOUT US</a>
-                </li>
-              </ul>
             </div>
           </div>
         </div>
@@ -116,15 +91,6 @@ if (MAINTENANCE_MODE && !isset($_REQUEST['skip_redirect'])) {
       <div class="map-container">
         <h1>We can give <b>1.6 million people</b> in Florida the ability to vote.</h1>
         <h2><span class="signatures_needed"></span> more Floridians need to sign the <a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()">petition</a> in the next <span class="days_left"></span> days.</h1>
-
-        <div class="row action-bar hide-on-complete">
-          <div class="col-xs-6">
-            <a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()" class="btn btn-dark btn-block help-button">Sign Petition</a>
-          </div>
-          <div class="col-xs-6">
-            <a href="#donate" onclick="openModal(); return false;" class="btn btn-dark btn-block help-button">Donate Petitions</a>
-          </div>
-        </div>
 
         <div id="container"></div>
 
@@ -166,50 +132,7 @@ if (MAINTENANCE_MODE && !isset($_REQUEST['skip_redirect'])) {
       <div class="container">
         <div class="row">
 
-          <div class="col-xs-12 text-left signup-text hide-on-complete" style="display: none;">
-            <h2>We Need Your Help</h2>
-            <p>1 in 10 Florida adults is banned from voting because of a past conviction. Florida is one of only four states that permanently takes away their vote. We need <span class="signatures_needed"></span> more Florida registered voters to sign <a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()">this petition</a> by February 1st, 2018 to put an initiative on the ballot that would restore their ability to vote.</p>
-
-            <h4>
-              <a name="take-action"></a>
-              Together, we can make this happen. HERE'S HOW:
-            </h4>
-
-            <div class="row">
-              <div class="col-md-6">
-                <b class="mb">I Don't Live in Florida:</b>
-
-                <ul class="action-list">
-                  <li><a href="#donate" onclick="openModal(); return false;"><b>Send petitions</b> to Florida voters (including prepaid postage).</a></li>
-                  <li>Share the Petition with friends via
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?= rawurlencode(BASE_URL) ?>&quote=<?= rawurlencode(SHARE_MESSAGE) ?>" title="Share on Facebook" target="_blank"><b>Facebook</b></a>,
-                    <a href="https://twitter.com/intent/tweet?source=<?= rawurlencode(BASE_URL) ?>&text=<?= rawurlencode(SHARE_MESSAGE) ?>" target="_blank" title="Tweet"><b>Twitter</b></a> or
-                    <a href="mailto:?subject=We%20can%20make%20it%20possible%20for%201.6%20million%20more%20Floridians%20to%20vote&body=<?= rawurlencode(SHARE_MESSAGE) ?>" title="Send email"><b>Email</b></a>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="col-md-6">
-                <b class="mb">I Live in Florida:</b>
-
-                <ul class="action-list">
-                  <li><a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()"><b>Print Petition</b>, fill it out &amp; return it by mail.</a></li>
-                  <li><a href="https://registertovoteflorida.gov" title="Register to Vote" target="_blank" onclick="return registerToVote();"><b>Not Registered to Vote?</b> Register Online</a>.</li>
-                  <li><a href="#donate" onclick="openModal(); return false;"><b>Send petitions</b> to Florida voters (including prepaid postage).</a></li>
-                  <li>Share the Petition with friends via
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?= rawurlencode(BASE_URL) ?>&quote=<?= rawurlencode(SHARE_MESSAGE) ?>" title="Share on Facebook" target="_blank"><b>Facebook</b></a>,
-                    <a href="https://twitter.com/intent/tweet?source=<?= rawurlencode(BASE_URL) ?>&text=<?= rawurlencode(SHARE_MESSAGE) ?>" target="_blank" title="Tweet"><b>Twitter</b></a> or
-                    <a href="mailto:?subject=We%20can%20make%20it%20possible%20for%201.6%20million%20more%20Floridians%20to%20vote&body=<?= rawurlencode(SHARE_MESSAGE) ?>" title="Send email"><b>Email</b></a>
-                  </li>
-                  <li><a href="https://actionnetwork.org/event_campaigns/voting-restoration-amendment-petition-collection"><b>Attend</b> an event</a></li>
-                  <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdyZSdRDxYncEm5vSnHoNHoqxv3TgIQ8rfxuMAiZxRI6sN13g/viewform"><b>Host</b> an event</a></li>
-                </ul>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="text-left signup-text show-on-complete" style="display: none;">
+          <div class="text-left signup-text">
             <h2>Goal Reached!</h2>
             <p> Enough petition signatures have been submitted to give Florida voters a chance to restore the voting rights of 1.6 million people this November.</p>
             <p>&nbsp;</p>
