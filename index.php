@@ -90,7 +90,13 @@ if (MAINTENANCE_MODE && !isset($_REQUEST['skip_redirect'])) {
     <section class="map-widget">
       <div class="map-container">
         <h1>We can give <b>1.6 million people</b> in Florida the ability to vote.</h1>
-        <h2><span class="signatures_needed"></span> more Floridians need to sign the <a href="pdf/petition.pdf" title="Sign Petition" target="_blank" onclick="return printPetition()">petition</a> in the next <span class="days_left"></span> days.</h1>
+        <h2><span>GOAL REACHED:</span>&nbsp; The initiative will appear on the Florida ballot this November!</h2>
+
+        <div class="row action-bar">
+          <div class="col-xs-12">
+            <a href="http://eepurl.com/dgyG3z" title="Sign Petition" target="_blank" class="btn btn-dark help-button">Sign Up to Get Involved</a>
+          </div>
+        </div>
 
         <div id="container"></div>
 

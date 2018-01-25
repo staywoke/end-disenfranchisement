@@ -328,7 +328,7 @@ nav ul, nav li {
 
 .map-container {
   margin: 0 auto;
-  padding-top: 90px;
+  padding-top: 15vh;
   opacity: 0;
   transition: opacity 0.25s ease;
 }
@@ -508,7 +508,7 @@ ul.share-buttons .sr-only {
 }
 
 #container {
-    height: calc(100vh - 350px);
+    height: calc(100vh - 410px);
     min-width: 300px;
     max-width: 800px;
     margin: 0 auto;
@@ -1060,7 +1060,7 @@ span.success-message {
     min-height: 250px;
   }
   #container {
-    height: calc(100vh - 350px);
+    height: calc(100vh - 400px);
   }
   .map-container {
     padding-top: 80px;
@@ -1080,10 +1080,10 @@ span.success-message {
     padding: 3px 6px;
   }
   #container {
-    height: calc(100vh - 390px);
+    height: calc(100vh - 450px);
   }
   .map-container {
-    padding-top: 70px;
+    padding-top: 80px;
   }
   .stats-headers {
     font-size: 24px

@@ -221,16 +221,7 @@ var renderMap = function () {
     $('.map-container .petitions_mailed').html(petitionText);
   }
 
-  if (percentCollected === 100) {
-    $('.hide-on-complete').hide();
-    $('.show-on-complete').show();
-    $('.map-container .petitions_mailed').html('<b class="number">133,126</b> Petitions Mailed');
-    $('.map-container h2').html('<span class="signatures_needed">Goal Reached:</span> The initiative will appear on the Florida ballot this November!');
-  } else {
-    $('.hide-on-complete').show();
-    $('.show-on-complete').hide();
-  }
-
+  $('.map-container .petitions_mailed').html('<b class="number">133,126</b> Petitions Mailed');
   $('.map-container').css({ 'opacity': 1 });
 
   // Create the chart
