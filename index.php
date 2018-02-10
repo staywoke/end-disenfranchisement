@@ -122,9 +122,7 @@ if (MAINTENANCE_MODE && !isset($_REQUEST['skip_redirect'])) {
             <div class="col-xs-7">
               <div class="blue-dot"></div><span class="petitions_mailed"></span>
             </div>
-            <div class="col-xs-5 text-right">
-              <span class="days_left"></span> Days Left
-            </div>
+            <div class="col-xs-5">&nbsp;</div>
           </div>
         </div>
 
